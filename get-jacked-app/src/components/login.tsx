@@ -48,8 +48,7 @@ export const Login = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
   return (
     <div className="login-box">
       <img
-        src="/main-img.jpeg
-      "
+        src="/main-img.jpeg"
         alt=""
         className="main-img"
       />

@@ -29,17 +29,26 @@ export const Register = ({
   };
 
   return (
-    <div className="login-box">
-      <h2>Register</h2>
+    <div className="register-box">
+      <img
+        src="/main-img.jpeg"
+        alt=""
+        className="main-img"
+      />
+      <img
+        src="/register.jpeg"
+        alt=""
+        className="register-img"
+      />
       <form
         action="submit"
-        className="login-form"
+        className="register-form"
         onSubmit={handleLogin}
       >
         <input
           type="text"
           className="user-input"
-          placeholder="Username"
+          placeholder="   Username"
           value={inputUsername}
           onChange={(e) => setInputUsername(e.target.value)}
           disabled={isLoggedIn}
@@ -47,12 +56,17 @@ export const Register = ({
         <input
           type="password"
           className="password-input"
-          placeholder="Password"
+          placeholder="   Password"
           value={inputPassword}
           onChange={(e) => setInputPassword(e.target.value)}
           disabled={isLoggedIn}
         />
-        <button disabled={isLoggedIn}>Register</button>
+        <button
+          className="register-button"
+          disabled={isLoggedIn}
+        >
+          Register
+        </button>
       </form>
     </div>
   );
