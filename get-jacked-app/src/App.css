@@ -6,21 +6,32 @@ body {
 
 .main-img {
   max-width: 425px;
-  position: absolute;
-  top: 100px; /* Adjust this value to move the image down */
+  position: relative; /* Ensure the image is positioned correctly */
+  /* top: 100px; Adjust this value to move the image down */
   left: 0;
+  padding-bottom: 50px;
+}
+
+.login-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center the content */
 }
 
 .login-img {
-  width: 50%; /* Adjust this value to make the image smaller */
+  width: 50%;
   display: block;
-  margin: 0 auto; /* Center the image */
+  margin: 0 auto;
 }
 
 .register-img {
   width: 80%;
   display: block;
   margin: 0 auto;
+}
+
+.register-link {
+  text-decoration: underline;
 }
 
 input,
@@ -32,6 +43,7 @@ button {
 
 .login-form,
 .register-form {
+  margin: 0 auto;
   width: 360px;
   height: 200px;
   display: flex;
@@ -44,6 +56,7 @@ button {
   height: 50px;
   margin-bottom: 15px;
   border-radius: 8px;
+  padding-left: 20px;
 }
 
 .login-button,
@@ -70,9 +83,9 @@ a:hover {
 }
 
 #root {
-  max-width: 1280px;
+  max-width: 425px; /* Ensure the max width of the app is 425px */
   margin: 0 auto;
-  padding: 2rem;
+  /* padding: 2rem; */
   text-align: center;
   min-height: 100vh;
   display: flex;

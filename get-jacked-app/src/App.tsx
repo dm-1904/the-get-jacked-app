@@ -2,6 +2,7 @@ import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Login } from "./components/login";
 import { RegisterPage } from "./pages/RegisterPage";
+import { Dashboard } from "./pages/Dashboard";
 import { useState } from "react";
 
 function App() {
@@ -23,6 +24,10 @@ function App() {
               isLoggedIn={isLoggedIn}
             />
           }
+        />
+        <Route
+          path="/dashboard"
+          element={<Dashboard />}
         />
       </Routes>
     </Router>

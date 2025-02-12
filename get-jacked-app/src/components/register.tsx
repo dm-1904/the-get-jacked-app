@@ -48,7 +48,7 @@ export const Register = ({
         <input
           type="text"
           className="user-input"
-          placeholder="   Username"
+          placeholder="Create Username"
           value={inputUsername}
           onChange={(e) => setInputUsername(e.target.value)}
           disabled={isLoggedIn}
@@ -56,7 +56,7 @@ export const Register = ({
         <input
           type="password"
           className="password-input"
-          placeholder="   Password"
+          placeholder="Create Password"
           value={inputPassword}
           onChange={(e) => setInputPassword(e.target.value)}
           disabled={isLoggedIn}
@@ -65,7 +65,7 @@ export const Register = ({
           className="register-button"
           disabled={isLoggedIn}
         >
-          Register
+          Get Started!
         </button>
       </form>
     </div>
