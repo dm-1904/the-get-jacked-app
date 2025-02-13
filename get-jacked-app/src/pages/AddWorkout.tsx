@@ -152,7 +152,12 @@ export const AddWorkout = () => {
         className="enter-sets"
         placeholder="How many sets?"
       />
-
+      <div className="add-movement-btn">
+        <button>Add Movement</button>
+      </div>
+      <div className="delete-movement-btn">
+        <button>Delete Movement</button>
+      </div>
       <button onClick={handleAddWorkout}>Add Workout to Routine</button>
       <button onClick={handleBack}>Back</button>
     </div>

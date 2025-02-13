@@ -6,7 +6,7 @@
 }
 
 input {
-  width: 80%;
+  /* width: 80%; */
   padding: 9px 19px;
   border-radius: 8px;
 }
@@ -42,8 +42,7 @@ input body {
   text-decoration: underline;
 }
 
-input,
-button {
+input {
   background-color: black;
   color: white;
   border: 1px solid white;
@@ -166,4 +165,9 @@ a:hover {
 
 .enter-sets {
   margin: 5px 0;
+}
+
+.add-movement-btn,
+.delete-movement-btn {
+  margin: 20px 0;
 }
