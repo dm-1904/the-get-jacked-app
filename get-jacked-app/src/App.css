@@ -1,4 +1,17 @@
-body {
+::placeholder {
+  color: rgb(113, 113, 113);
+  opacity: 1;
+  font-weight: bold;
+  font-size: 1em;
+}
+
+input {
+  width: 80%;
+  padding: 9px 19px;
+  border-radius: 8px;
+}
+
+input body {
   background-color: black;
   color: white;
   max-width: 425px;
@@ -64,10 +77,6 @@ button {
   font-weight: bold;
 }
 
-input::placeholder {
-  color: white;
-}
-
 a {
   color: white;
 }
@@ -83,9 +92,9 @@ a:hover {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Align items to the top */
+  justify-content: flex-start;
   align-items: center;
-  padding-top: 20px; /* Add padding to the top */
+  padding-top: 20px;
 }
 
 .back-button {
@@ -96,5 +105,5 @@ a:hover {
 }
 
 .page-title {
-  margin-bottom: 20px; /* Add margin below the title */
+  margin-bottom: 20px;
 }

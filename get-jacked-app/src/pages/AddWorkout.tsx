@@ -14,11 +14,25 @@ export const AddWorkout = () => {
 
   return (
     <div>
-      <h3 className="page-title">Add Workout</h3>
-      <h2>4</h2>
-      <div>
-        This is the Add Workout page. Here you can add a new workout to your
-        routine.
+      <h3 className="page-title">Add Workout 4</h3>
+      <input
+        type="text"
+        className="enter-workout"
+        placeholder="Enter workout (ex. chest)"
+      />
+      <div className="1-rep-box">
+        <input
+          type="radio"
+          id="1-rep-y"
+          name="1-rep"
+        />
+        <label htmlFor="i-rep-y">Y</label>
+        <input
+          type="radio"
+          id="1-rep-n"
+          name="1-rep"
+        />
+        <label htmlFor="i-rep-n">N</label>
       </div>
       <button onClick={handleAddWorkout}>Add Workout to Routine</button>
       <button onClick={handleBack}>Back</button>
