@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
 import { CreateUser } from "../context/CreateUser";
+import { useNavigate } from "react-router-dom";
 
 export const Register = ({
   setDependency,
@@ -9,6 +10,7 @@ export const Register = ({
   isLoggedIn: boolean;
 }) => {
   const auth = useContext(CreateUser);
+  const navigate = useNavigate();
   const [inputUsername, setInputUsername] = useState("");
   const [inputPassword, setInputPassword] = useState("");
 
@@ -26,6 +28,7 @@ export const Register = ({
     setInputUsername("");
     setInputPassword("");
     setDependency((prev) => prev + 1);
+    navigate("/workout-schedule"); // Navigate to the Workout Schedule page
   };
 
   return (

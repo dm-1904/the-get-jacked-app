@@ -3,6 +3,12 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Login } from "./components/login";
 import { RegisterPage } from "./pages/RegisterPage";
 import { Dashboard } from "./pages/Dashboard";
+import { WorkoutSchedule } from "./pages/WorkoutSchedule";
+import { EditWorkout } from "./pages/EditWorkout";
+import { AddWorkout } from "./pages/AddWorkout";
+import { TodaysWorkout } from "./pages/TodaysWorkout";
+import { WorkoutSummary } from "./pages/WorkoutSummary";
+import { History } from "./pages/History";
 import { useState } from "react";
 
 function App() {
@@ -28,6 +34,30 @@ function App() {
         <Route
           path="/dashboard"
           element={<Dashboard />}
+        />
+        <Route
+          path="/workout-schedule"
+          element={<WorkoutSchedule />}
+        />
+        <Route
+          path="/edit-workout"
+          element={<EditWorkout />}
+        />
+        <Route
+          path="/add-workout"
+          element={<AddWorkout />}
+        />
+        <Route
+          path="/todays-workout"
+          element={<TodaysWorkout />}
+        />
+        <Route
+          path="/workout-summary"
+          element={<WorkoutSummary />}
+        />
+        <Route
+          path="/history"
+          element={<History />}
         />
       </Routes>
     </Router>

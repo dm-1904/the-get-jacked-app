@@ -6,26 +6,21 @@ body {
 
 .main-img {
   max-width: 425px;
-  position: relative; /* Ensure the image is positioned correctly */
-  /* top: 100px; Adjust this value to move the image down */
+  position: relative;
   left: 0;
   padding-bottom: 50px;
 }
 
-.login-box {
+.login-box,
+.register-box {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center the content */
+  align-items: center;
 }
 
-.login-img {
-  width: 50%;
-  display: block;
-  margin: 0 auto;
-}
-
+.login-img,
 .register-img {
-  width: 80%;
+  width: 50%;
   display: block;
   margin: 0 auto;
 }
@@ -48,7 +43,6 @@ button {
   height: 200px;
   display: flex;
   flex-direction: column;
-  /* align-content: space-between; */
 }
 
 .user-input,
@@ -83,56 +77,24 @@ a:hover {
 }
 
 #root {
-  max-width: 425px; /* Ensure the max width of the app is 425px */
+  max-width: 425px;
   margin: 0 auto;
-  /* padding: 2rem; */
   text-align: center;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start; /* Align items to the top */
   align-items: center;
+  padding-top: 20px; /* Add padding to the top */
 }
 
 .back-button {
-  width: 60px; /* Adjust the size of the back button image */
+  width: 60px;
   position: absolute;
-  top: 20px; /* Adjust the top position */
-  left: 20px; /* Adjust the left position */
+  top: 20px;
+  left: 20px;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+.page-title {
+  margin-bottom: 20px; /* Add margin below the title */
 }
