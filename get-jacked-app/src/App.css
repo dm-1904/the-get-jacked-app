@@ -107,3 +107,55 @@ a:hover {
 .page-title {
   margin-bottom: 20px;
 }
+
+/* Page 4, Add Workout  */
+
+/* .enter-workout {
+  width: 100%;
+  padding: 9px 19px;
+  border-radius: 8px;
+  color: white;
+} */
+
+.rep-box,
+.select-day-box {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.select-day-box {
+  flex-direction: column;
+}
+
+.day-checker-box {
+  display: flex;
+  justify-content: center;
+  /* gap: 20px 0; */
+  margin: 20px 0;
+}
+
+.rep-input,
+.day-input {
+  display: none;
+}
+
+.rep-label,
+.day-label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  background-color: white;
+  color: black;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.rep-input:checked + .rep-label,
+.day-input:checked + .day-label {
+  background-color: black;
+  color: white;
+}
