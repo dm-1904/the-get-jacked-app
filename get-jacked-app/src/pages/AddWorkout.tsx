@@ -18,7 +18,7 @@ export const AddWorkout = () => {
       <input
         type="text"
         className="enter-workout"
-        placeholder="Enter workout (ex. chest)"
+        placeholder="Enter workout (ex. Chest)"
       />
       <div className="rep-box">
         <span>Track 1 Rep Max?</span>
@@ -142,6 +142,17 @@ export const AddWorkout = () => {
           </label>
         </div>
       </div>
+      <input
+        type="text"
+        className="enter-movement"
+        placeholder="Enter Movement (ex. Benchpress)"
+      />
+      <input
+        type="text"
+        className="enter-sets"
+        placeholder="How many sets?"
+      />
+
       <button onClick={handleAddWorkout}>Add Workout to Routine</button>
       <button onClick={handleBack}>Back</button>
     </div>

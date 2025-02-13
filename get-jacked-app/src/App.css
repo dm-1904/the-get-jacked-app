@@ -117,6 +117,11 @@ a:hover {
   color: white;
 } */
 
+.rep-box {
+  align-items: center;
+  justify-content: center;
+}
+
 .rep-box,
 .select-day-box {
   display: flex;
@@ -131,8 +136,7 @@ a:hover {
 .day-checker-box {
   display: flex;
   justify-content: center;
-  /* gap: 20px 0; */
-  margin: 20px 0;
+  gap: 10px; /* Add gap between day labels */
 }
 
 .rep-input,
@@ -145,8 +149,8 @@ a:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   background-color: white;
   color: black;
   border-radius: 8px;
@@ -158,4 +162,8 @@ a:hover {
 .day-input:checked + .day-label {
   background-color: black;
   color: white;
+}
+
+.enter-sets {
+  margin: 5px 0;
 }
