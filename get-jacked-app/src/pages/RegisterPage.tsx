@@ -13,7 +13,7 @@ export const RegisterPage = ({
   return (
     <div>
       <img
-        src="/back-arrow.jpeg"
+        src="/back-arrow.jpeg" // Ensure this path is correct
         alt="Back to Login"
         className="back-button"
         onClick={() => navigate("/")}

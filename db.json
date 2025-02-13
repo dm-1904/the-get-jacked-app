@@ -1,34 +1,14 @@
 {
   "app-users": [
     {
-      "id": "1",
-      "username": "user1",
-      "password": "password1",
-      "lastCount": 0
-    },
-    {
-      "id": "2",
-      "username": "user2",
-      "password": "password2",
-      "lastCount": 0
-    },
-    {
       "id": "9061334555",
       "username": "Damon",
       "password": "Password",
       "lastCount": 0
-    },
-    {
-      "id": "3098271047",
-      "username": "test",
-      "password": "test",
-      "lastCount": 0
-    },
-    {
-      "id": "8688010992",
-      "username": "",
-      "password": "",
-      "lastCount": 0
     }
-  ]
+  ],
+  "oneRep": [],
+  "workouts": [],
+  "movements": [],
+  "movementLogs": []
 }

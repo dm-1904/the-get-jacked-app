@@ -101,20 +101,23 @@ a:hover {
   position: absolute;
   top: 20px;
   left: 20px;
+  cursor: pointer;
+  z-index: 100;
 }
 
 .page-title {
   margin-bottom: 20px;
+  max-width: 425px;
 }
 
 /* Page 4, Add Workout  */
 
-/* .enter-workout {
-  width: 100%;
+.enter-workout {
+  width: 90%;
   padding: 9px 19px;
   border-radius: 8px;
   color: white;
-} */
+}
 
 .rep-box {
   align-items: center;
@@ -163,8 +166,15 @@ a:hover {
   color: white;
 }
 
+.enter-movement,
 .enter-sets {
+  display: block;
   margin: 5px 0;
+}
+
+.move-sets-inputs {
+  display: flex;
+  flex-direction: column;
 }
 
 .add-movement-btn,

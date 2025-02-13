@@ -48,7 +48,7 @@ const CreateUserPro = ({ children }: { children: ReactNode }) => {
   const postUser = async (username: string, password: string) => {
     const newID = await generateUniqueID();
     setID(newID);
-    const user = { id: newID, username, password, lastCount: 0 };
+    const user = { id: newID, username, password };
     localStorage.setItem("user", JSON.stringify(user));
     return fetch("http://localhost:3000/app-users", {
       method: "POST",

@@ -14,7 +14,12 @@ export const AddWorkout = () => {
 
   return (
     <div>
-      <h3 className="page-title">Add Workout 4</h3>
+      <img
+        className="page-title"
+        src="/add-workout.jpeg"
+        alt=""
+      />
+
       <input
         type="text"
         className="enter-workout"
@@ -142,16 +147,20 @@ export const AddWorkout = () => {
           </label>
         </div>
       </div>
-      <input
-        type="text"
-        className="enter-movement"
-        placeholder="Enter Movement (ex. Benchpress)"
-      />
-      <input
-        type="text"
-        className="enter-sets"
-        placeholder="How many sets?"
-      />
+
+      <div className="move-sets-inputs">
+        <input
+          type="text"
+          className="enter-movement"
+          placeholder="Enter Movement (ex. Benchpress)"
+        />
+        <input
+          type="text"
+          className="enter-sets"
+          placeholder="How many sets?"
+        />
+      </div>
+
       <div className="add-movement-btn">
         <button>Add Movement</button>
       </div>

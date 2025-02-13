@@ -34,13 +34,13 @@ export const Register = ({
   return (
     <div className="register-box">
       <img
-        src="/main-img.jpeg"
-        alt=""
+        src="/main-img.jpeg" // Ensure this path is correct
+        alt="Main"
         className="main-img"
       />
       <img
-        src="/register.jpeg"
-        alt=""
+        src="/register.jpeg" // Ensure this path is correct
+        alt="Register"
         className="register-img"
       />
       <form
