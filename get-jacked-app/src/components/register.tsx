@@ -18,7 +18,7 @@ export const Register = ({
     throw new Error("Login auth error");
   }
 
-  const { setUsername, setPassword, postUser } = auth;
+  const { setUsername, setPassword, postUser, setActiveUser } = auth;
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -28,18 +28,19 @@ export const Register = ({
     setInputUsername("");
     setInputPassword("");
     setDependency((prev) => prev + 1);
-    navigate("/workout-schedule"); // Navigate to the Workout Schedule page
+    setActiveUser(inputUsername);
+    navigate("/workout-schedule");
   };
 
   return (
     <div className="register-box">
       <img
-        src="/main-img.jpeg" // Ensure this path is correct
+        src="/main-img.jpeg"
         alt="Main"
         className="main-img"
       />
       <img
-        src="/register.jpeg" // Ensure this path is correct
+        src="/register.jpeg"
         alt="Register"
         className="register-img"
       />

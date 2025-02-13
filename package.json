@@ -1,9 +1,0 @@
-{
-  "dependencies": {
-    "react-router-dom": "^6.29.0",
-    "react-toastify": "^11.0.3"
-  },
-  "devDependencies": {
-    "@types/react-toastify": "^4.0.2"
-  }
-}

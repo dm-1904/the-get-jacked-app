@@ -13,7 +13,7 @@ export const Login = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
     throw new Error("Login auth error");
   }
 
-  const { setUsername, setPassword, setID } = auth;
+  const { setUsername, setPassword, setActiveUser } = auth;
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -27,11 +27,12 @@ export const Login = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
     if (user) {
       setUsername(user.username);
       setPassword(user.password);
-      setID(user.id.toString());
+      // setID(user.id.toString());
       localStorage.setItem("user", JSON.stringify(user));
       localStorage.setItem("count", user.lastCount.toString());
       toast.success(`Welcome ${user.username}`);
-      navigate("/dashboard"); // Navigate to the Dashboard page
+      setActiveUser(user.username);
+      navigate("/dashboard");
     } else {
       toast.error("Invalid username or password");
     }
