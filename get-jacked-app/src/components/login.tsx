@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 import { CreateUser } from "../context/CreateUser";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -13,7 +13,7 @@ export const Login = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
     throw new Error("Login auth error");
   }
 
-  const { setUsername, setPassword, setActiveUser } = auth;
+  const { setUsername, setPassword } = auth;
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -31,8 +31,7 @@ export const Login = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
       localStorage.setItem("user", JSON.stringify(user));
       localStorage.setItem("count", user.lastCount.toString());
       toast.success(`Welcome ${user.username}`);
-      setActiveUser(user.username);
-      navigate("/dashboard");
+      navigate("/dashboard"); // Ensure navigation to dashboard
     } else {
       toast.error("Invalid username or password");
     }

@@ -1,14 +1,9 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CreateUser } from "../context/CreateUser";
+// import { toast } from "react-hot-toast";
 
-export const Register = ({
-  setDependency,
-  isLoggedIn,
-}: {
-  setDependency: (value: (prev: number) => number) => void;
-  isLoggedIn: boolean;
-}) => {
+export const Register = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
   const navigate = useNavigate();
   const auth = useContext(CreateUser);
   const [inputUsername, setInputUsername] = useState("");
@@ -24,10 +19,10 @@ export const Register = ({
     e.preventDefault();
     setUsername(inputUsername);
     setPassword(inputPassword);
+
     await postUser(inputUsername, inputPassword);
     setInputUsername("");
     setInputPassword("");
-    setDependency((prev) => prev + 1);
     navigate("/workout-schedule");
   };
 

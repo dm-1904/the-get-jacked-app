@@ -8,11 +8,9 @@ import { EditWorkout } from "./pages/EditWorkout";
 import { AddWorkout } from "./pages/AddWorkout";
 import { TodaysWorkout } from "./pages/TodaysWorkout";
 import { WorkoutSummary } from "./pages/WorkoutSummary";
-import { History } from "./pages/History";
-import { useState } from "react";
+import { WorkoutHistory } from "./pages/WorkoutHistory";
 
 function App() {
-  const [dependency, setDependency] = useState(0);
   const isLoggedIn = false; // Replace with actual login state
 
   return (
@@ -24,12 +22,7 @@ function App() {
         />
         <Route
           path="/register"
-          element={
-            <RegisterPage
-              setDependency={setDependency}
-              isLoggedIn={isLoggedIn}
-            />
-          }
+          element={<RegisterPage isLoggedIn={isLoggedIn} />}
         />
         <Route
           path="/dashboard"
@@ -57,7 +50,7 @@ function App() {
         />
         <Route
           path="/history"
-          element={<History />}
+          element={<WorkoutHistory />}
         />
       </Routes>
     </Router>

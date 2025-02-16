@@ -1,13 +1,7 @@
 import { Register } from "../components/register";
 import { useNavigate } from "react-router-dom";
 
-export const RegisterPage = ({
-  setDependency,
-  isLoggedIn,
-}: {
-  setDependency: (value: (prev: number) => number) => void;
-  isLoggedIn: boolean;
-}) => {
+export const RegisterPage = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
   const navigate = useNavigate();
 
   return (
@@ -19,10 +13,7 @@ export const RegisterPage = ({
         onClick={() => navigate("/dashboard")}
         style={{ cursor: "pointer" }}
       />
-      <Register
-        setDependency={setDependency}
-        isLoggedIn={isLoggedIn}
-      />
+      <Register isLoggedIn={isLoggedIn} />
     </div>
   );
 };

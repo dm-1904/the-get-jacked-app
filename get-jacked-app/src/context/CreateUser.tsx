@@ -1,5 +1,6 @@
 import { createContext } from "react";
 import { ReactNode, useEffect, useState } from "react";
+import { toast } from "react-hot-toast";
 
 export type TUserContext = {
   username: string;
@@ -25,6 +26,17 @@ const CreateUserPro = ({ children }: { children: ReactNode }) => {
   }, []);
 
   const postUser = async (username: string, password: string) => {
+    const response = await fetch("http://localhost:3000/app-users");
+    const users = await response.json();
+    const existingUser = users.find(
+      (user: { username: string }) => user.username === username
+    );
+
+    if (existingUser) {
+      toast.error("Username already exists");
+      throw new Error("Username already exists");
+    }
+
     const user = { username, password };
     localStorage.setItem("user", JSON.stringify(user));
     return fetch("http://localhost:3000/app-users", {
