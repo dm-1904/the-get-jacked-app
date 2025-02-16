@@ -1,20 +1,9 @@
 {
   "app-users": [
     {
-      "id": "9061334555",
+      "id": "1a78",
       "username": "Damon",
-      "password": "Password",
-      "lastCount": 0
-    },
-    {
-      "id": "e7f4",
-      "username": "Damon",
-      "password": "Password"
-    },
-    {
-      "id": "a3ed",
-      "username": "Damon",
-      "password": "Password"
+      "password": "pass"
     }
   ],
   "oneRep": [],

@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
-import { CreateUser } from "../context/CreateUser";
 import { useNavigate } from "react-router-dom";
+import { CreateUser } from "../context/CreateUser";
 
 export const Register = ({
   setDependency,
@@ -9,8 +9,8 @@ export const Register = ({
   setDependency: (value: (prev: number) => number) => void;
   isLoggedIn: boolean;
 }) => {
-  const auth = useContext(CreateUser);
   const navigate = useNavigate();
+  const auth = useContext(CreateUser);
   const [inputUsername, setInputUsername] = useState("");
   const [inputPassword, setInputPassword] = useState("");
 
@@ -18,7 +18,7 @@ export const Register = ({
     throw new Error("Login auth error");
   }
 
-  const { setUsername, setPassword, postUser, setActiveUser } = auth;
+  const { setUsername, setPassword, postUser } = auth;
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -28,7 +28,6 @@ export const Register = ({
     setInputUsername("");
     setInputPassword("");
     setDependency((prev) => prev + 1);
-    setActiveUser(inputUsername);
     navigate("/workout-schedule");
   };
 
@@ -36,23 +35,23 @@ export const Register = ({
     <div className="register-box">
       <img
         src="/main-img.jpeg"
-        alt="Main"
+        alt=""
         className="main-img"
       />
       <img
         src="/register.jpeg"
-        alt="Register"
+        alt=""
         className="register-img"
       />
       <form
         action="submit"
-        className="register-form"
+        className="login-form"
         onSubmit={handleLogin}
       >
         <input
           type="text"
           className="user-input"
-          placeholder="Create Username"
+          placeholder="Username"
           value={inputUsername}
           onChange={(e) => setInputUsername(e.target.value)}
           disabled={isLoggedIn}
@@ -60,7 +59,7 @@ export const Register = ({
         <input
           type="password"
           className="password-input"
-          placeholder="Create Password"
+          placeholder="Password"
           value={inputPassword}
           onChange={(e) => setInputPassword(e.target.value)}
           disabled={isLoggedIn}
@@ -69,7 +68,7 @@ export const Register = ({
           className="register-button"
           disabled={isLoggedIn}
         >
-          Get Started!
+          Register
         </button>
       </form>
     </div>

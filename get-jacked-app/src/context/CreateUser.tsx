@@ -3,11 +3,9 @@ import { ReactNode, useEffect, useState } from "react";
 
 export type TUserContext = {
   username: string;
-  password: string;
-  activeUser: string;
   setUsername: (username: string) => void;
+  password: string;
   setPassword: (password: string) => void;
-  setActiveUser: (activeUser: string) => void;
   postUser: (user: string, password: string) => Promise<void>;
 };
 
@@ -16,7 +14,6 @@ const CreateUser = createContext<TUserContext | undefined>(undefined);
 const CreateUserPro = ({ children }: { children: ReactNode }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [activeUser, setActiveUser] = useState("");
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
@@ -24,14 +21,12 @@ const CreateUserPro = ({ children }: { children: ReactNode }) => {
       const { username, password } = JSON.parse(storedUser);
       setUsername(username);
       setPassword(password);
-      setActiveUser(username);
     }
   }, []);
 
   const postUser = async (username: string, password: string) => {
     const user = { username, password };
     localStorage.setItem("user", JSON.stringify(user));
-    setActiveUser(username);
     return fetch("http://localhost:3000/app-users", {
       method: "POST",
       headers: {
@@ -58,8 +53,6 @@ const CreateUserPro = ({ children }: { children: ReactNode }) => {
         setUsername,
         setPassword,
         postUser,
-        activeUser,
-        setActiveUser,
       }}
     >
       {children}

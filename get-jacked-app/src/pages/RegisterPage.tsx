@@ -16,7 +16,7 @@ export const RegisterPage = ({
         src="/back-arrow.jpeg" // Ensure this path is correct
         alt="Back to Login"
         className="back-button"
-        onClick={() => navigate("/")}
+        onClick={() => navigate("/dashboard")}
         style={{ cursor: "pointer" }}
       />
       <Register
