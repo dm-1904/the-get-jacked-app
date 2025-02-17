@@ -23,15 +23,16 @@ export const Login = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
       (u: { username: string; password: string }) =>
         u.username === inputUsername && u.password === inputPassword
     );
+    console.log(user);
 
     if (user) {
       setUsername(user.username);
       setPassword(user.password);
       // setID(user.id.toString());
       localStorage.setItem("user", JSON.stringify(user));
-      localStorage.setItem("count", user.lastCount.toString());
+      // localStorage.setItem("count", user.lastCount.toString());
       toast.success(`Welcome ${user.username}`);
-      navigate("/dashboard"); // Ensure navigation to dashboard
+      navigate("/dashboard");
     } else {
       toast.error("Invalid username or password");
     }
