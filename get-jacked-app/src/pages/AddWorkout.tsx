@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { EnterWorkout } from "../components/AddWorkout/EnterWorkout";
 
 export const AddWorkout = () => {
   const navigate = useNavigate();
@@ -19,12 +20,13 @@ export const AddWorkout = () => {
         src="/add-workout.jpeg"
         alt=""
       />
+      <EnterWorkout />
 
-      <input
+      {/* <input
         type="text"
         className="enter-workout"
         placeholder="Enter workout (ex. Chest)"
-      />
+      /> */}
       <div className="rep-box">
         <span>Track 1 Rep Max?</span>
         <input

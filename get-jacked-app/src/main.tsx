@@ -4,12 +4,15 @@ import "./index.css";
 import App from "./App.tsx";
 import { CreateUserPro } from "./context/CreateUser.tsx";
 import { Toaster } from "react-hot-toast";
+import { CreateWorkoutPro } from "./context/CreateWorkout.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <CreateUserPro>
-      <App />
-      <Toaster />
+      <CreateWorkoutPro>
+        <App />
+        <Toaster />
+      </CreateWorkoutPro>
     </CreateUserPro>
   </StrictMode>
 );

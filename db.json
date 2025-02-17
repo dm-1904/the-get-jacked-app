@@ -7,7 +7,18 @@
     }
   ],
   "oneRep": [],
-  "workouts": [],
+  "workouts": [
+    {
+      "id": "c155",
+      "workout": "",
+      "userID": ""
+    },
+    {
+      "id": "b709",
+      "workout": "",
+      "userID": ""
+    }
+  ],
   "movements": [],
   "movementLogs": []
 }

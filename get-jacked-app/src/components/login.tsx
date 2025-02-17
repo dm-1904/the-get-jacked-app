@@ -23,13 +23,13 @@ export const Login = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
       (u: { username: string; password: string }) =>
         u.username === inputUsername && u.password === inputPassword
     );
-    console.log(user);
+    // console.log(user);
 
     if (user) {
       setUsername(user.username);
       setPassword(user.password);
       setUserID(user.id);
-      console.log(user.id);
+      // console.log(user.id);
       // setID(user.id.toString());
       localStorage.setItem("user", JSON.stringify(user));
       // localStorage.setItem("count", user.lastCount.toString());
