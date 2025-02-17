@@ -13,7 +13,7 @@ export const Login = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
     throw new Error("Login auth error");
   }
 
-  const { setUsername, setPassword } = auth;
+  const { setUsername, setPassword, setUserID } = auth;
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -28,6 +28,8 @@ export const Login = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
     if (user) {
       setUsername(user.username);
       setPassword(user.password);
+      setUserID(user.id);
+      console.log(user.id);
       // setID(user.id.toString());
       localStorage.setItem("user", JSON.stringify(user));
       // localStorage.setItem("count", user.lastCount.toString());

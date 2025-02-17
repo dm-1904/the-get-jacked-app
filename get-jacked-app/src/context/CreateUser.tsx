@@ -8,6 +8,8 @@ export type TUserContext = {
   password: string;
   setPassword: (password: string) => void;
   postUser: (user: string, password: string) => Promise<void>;
+  userID: string;
+  setUserID: (userID: string) => void;
 };
 
 const CreateUser = createContext<TUserContext | undefined>(undefined);
@@ -15,6 +17,7 @@ const CreateUser = createContext<TUserContext | undefined>(undefined);
 const CreateUserPro = ({ children }: { children: ReactNode }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [userID, setUserID] = useState("");
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
@@ -65,6 +68,8 @@ const CreateUserPro = ({ children }: { children: ReactNode }) => {
         setUsername,
         setPassword,
         postUser,
+        userID,
+        setUserID,
       }}
     >
       {children}
