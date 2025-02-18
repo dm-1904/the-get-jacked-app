@@ -1,4 +1,10 @@
-import { createContext, ReactNode, useContext, useState } from "react";
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { CreateUser } from "./CreateUser";
 
 export type TWorkoutContex = {
@@ -17,7 +23,15 @@ const CreateWorkoutPro = ({ children }: { children: ReactNode }) => {
   if (!user) {
     throw new Error("CreateWorkoutProvider user not found");
   }
-  const { userID } = user;
+  const { userID, setUserID } = user;
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      const { id } = JSON.parse(storedUser);
+      setUserID(id);
+    }
+  });
 
   const postWorkout = async (workout: string) => {
     console.log("post", userID);
