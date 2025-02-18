@@ -3,7 +3,6 @@ import { Route, Routes } from "react-router-dom";
 import { Login } from "./components/login";
 import { RegisterPage } from "./pages/RegisterPage";
 import { Dashboard } from "./pages/Dashboard";
-import { WorkoutSchedule } from "./pages/WorkoutSchedule";
 import { EditWorkout } from "./pages/EditWorkout";
 import { AddWorkout } from "./pages/AddWorkout";
 import { TodaysWorkout } from "./pages/TodaysWorkout";
@@ -32,10 +31,6 @@ function App() {
           <Route
             path="/dashboard"
             element={<Dashboard />}
-          />
-          <Route
-            path="/workout-schedule"
-            element={<WorkoutSchedule />}
           />
           <Route
             path="/edit-workout"

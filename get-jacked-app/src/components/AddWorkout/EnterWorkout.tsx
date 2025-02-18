@@ -34,7 +34,7 @@ export const EnterWorkout = () => {
     await postWorkout(formattedWorkout, selectedDay);
     setInputWorkout("");
     setSelectedDay("");
-    navigate("/workout-schedule");
+    navigate("/dashboard");
   };
 
   return (

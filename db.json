@@ -18,6 +18,12 @@
       "workout": "Back",
       "userID": "1dcd",
       "day": "Tuesday"
+    },
+    {
+      "id": "89ca",
+      "workout": "Arms",
+      "userID": "1dcd",
+      "day": "Wednesday"
     }
   ]
 }

@@ -7,7 +7,7 @@ export const RegisterPage = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
   return (
     <div>
       <img
-        src="/back-arrow.jpeg" // Ensure this path is correct
+        src="/back-arrow.jpeg"
         alt="Back to Login"
         className="back-button"
         onClick={() => navigate("/dashboard")}

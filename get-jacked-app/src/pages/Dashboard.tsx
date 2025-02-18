@@ -1,6 +1,8 @@
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export const Dashboard = () => {
+  const [workoutList, setWorkoutList] = useState([]);
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -9,29 +11,71 @@ export const Dashboard = () => {
   };
 
   const handleEditWorkouts = () => {
-    navigate("/workout-schedule");
+    navigate("/add-workout");
   };
 
-  const handleStartWorkout = () => {
-    navigate("/todays-workout");
+  const getWorkouts = () => {
+    return fetch("http://localhost:3000/workouts")
+      .then((res) => res.json())
+      .catch((err: Error) => {
+        throw new Error(`HTTP request getWorkouts failed ${err.message}`);
+      });
   };
 
-  const handleChestHistory = () => {
-    navigate("/history");
+  const verifyUser = () => {
+    const storedUser = localStorage.getItem("user");
+    return storedUser ? JSON.parse(storedUser).id : null;
   };
+
+  useEffect(() => {
+    const fetchWorkouts = async () => {
+      try {
+        const workouts = await getWorkouts();
+        const userID = verifyUser();
+        const userWorkouts = workouts.filter((workout: { userID: string }) => {
+          return workout.userID === userID;
+        });
+        setWorkoutList(userWorkouts);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    fetchWorkouts();
+  }, []);
 
   return (
     <div>
-      <h3 className="page-title">Workout Schedule</h3>
-      <h2>1</h2>
+      <img
+        src="/workout-schedule.jpeg"
+        alt=""
+        className="page-title"
+      />
       <div>
-        This is the dashboard. it will show past, today's, and future workouts
-        for the week
+        This is the dashboard. It shows the active user's current workout
+        schedule.
       </div>
-      <button onClick={handleStartWorkout}>Start Workout</button>
-      <button onClick={handleEditWorkouts}>Edit Workouts</button>
-      <button onClick={handleChestHistory}>Chest</button>
-      <button onClick={handleLogout}>Logout</button>
+      <div className="workout-list">
+        {workoutList.length > 0 ? (
+          workoutList.map(
+            (workout: { id: string; workout: string; day: string }) => (
+              <div
+                className="workout-list-item"
+                key={workout.id}
+              >
+                <p>
+                  {workout.day} - {workout.workout}
+                </p>
+              </div>
+            )
+          )
+        ) : (
+          <p>No workouts found</p>
+        )}
+      </div>
+      <div className="schedule-buttons">
+        <button onClick={handleEditWorkouts}>Add Workouts</button>
+        <button onClick={handleLogout}>Logout</button>
+      </div>
     </div>
   );
 };

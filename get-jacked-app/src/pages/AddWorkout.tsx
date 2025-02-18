@@ -5,7 +5,7 @@ export const AddWorkout = () => {
   const navigate = useNavigate();
 
   const handleBack = () => {
-    navigate("/workout-schedule");
+    navigate("/dashboard");
   };
 
   return (
