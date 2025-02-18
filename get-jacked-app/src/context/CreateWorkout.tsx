@@ -20,6 +20,7 @@ const CreateWorkoutPro = ({ children }: { children: ReactNode }) => {
   const { userID } = user;
 
   const postWorkout = async (workout: string) => {
+    console.log("post", userID);
     const newWorkout = { workout, userID };
     return fetch("http://localhost:3000/workouts", {
       method: "POST",

@@ -1,7 +1,7 @@
 {
   "app-users": [
     {
-      "id": "1a78",
+      "id": "9632",
       "username": "Damon",
       "password": "pass"
     }
@@ -9,13 +9,18 @@
   "oneRep": [],
   "workouts": [
     {
-      "id": "c155",
-      "workout": "",
+      "id": "1247",
+      "workout": "chest",
       "userID": ""
     },
     {
-      "id": "b709",
-      "workout": "",
+      "id": "aadb",
+      "workout": "back",
+      "userID": ""
+    },
+    {
+      "id": "0040",
+      "workout": "back",
       "userID": ""
     }
   ],

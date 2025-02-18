@@ -8,12 +8,12 @@ export const EnterWorkout = () => {
   if (!newWorkout) {
     throw new Error("newWorkout does not exist");
   }
-  const { workout, setWorkout, postWorkout } = newWorkout;
+  const { setWorkout, postWorkout } = newWorkout;
 
   const handleNewWorkout = async (e: React.FormEvent) => {
     e.preventDefault();
     setWorkout(inputWorkout);
-    await postWorkout(workout);
+    await postWorkout(inputWorkout);
     setInputWorkout("");
   };
   return (
@@ -26,6 +26,8 @@ export const EnterWorkout = () => {
         type="text"
         className="enter-workout"
         placeholder="Enter workout (ex. Chest)"
+        value={inputWorkout}
+        onChange={(e) => setInputWorkout(e.target.value)}
       />
       <button className="add-workout-button">Add Workout</button>
     </form>
