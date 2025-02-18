@@ -41,6 +41,7 @@ export const EnterWorkout = () => {
             name="day"
             className="day-input"
             value="Sunday"
+            checked={selectedDay === "Sunday"}
             onChange={(e) => setSelectedDay(e.target.value)}
           />
           <label
@@ -56,6 +57,7 @@ export const EnterWorkout = () => {
             name="day"
             className="day-input"
             value="Monday"
+            checked={selectedDay === "Monday"}
             onChange={(e) => setSelectedDay(e.target.value)}
           />
           <label
@@ -71,6 +73,7 @@ export const EnterWorkout = () => {
             name="day"
             className="day-input"
             value="Tuesday"
+            checked={selectedDay === "Tuesday"}
             onChange={(e) => setSelectedDay(e.target.value)}
           />
           <label
@@ -86,6 +89,7 @@ export const EnterWorkout = () => {
             name="day"
             className="day-input"
             value="Wednesday"
+            checked={selectedDay === "Wednesday"}
             onChange={(e) => setSelectedDay(e.target.value)}
           />
           <label
@@ -101,6 +105,7 @@ export const EnterWorkout = () => {
             name="day"
             className="day-input"
             value="Thursday"
+            checked={selectedDay === "Thursday"}
             onChange={(e) => setSelectedDay(e.target.value)}
           />
           <label
@@ -116,6 +121,7 @@ export const EnterWorkout = () => {
             name="day"
             className="day-input"
             value="Friday"
+            checked={selectedDay === "Friday"}
             onChange={(e) => setSelectedDay(e.target.value)}
           />
           <label
@@ -131,6 +137,7 @@ export const EnterWorkout = () => {
             name="day"
             className="day-input"
             value="Saturday"
+            checked={selectedDay === "Saturday"}
             onChange={(e) => setSelectedDay(e.target.value)}
           />
           <label

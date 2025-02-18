@@ -23,7 +23,7 @@ export const Register = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
     await postUser(inputUsername, inputPassword);
     setInputUsername("");
     setInputPassword("");
-    navigate("/workout-schedule");
+    navigate("/add-workout");
   };
 
   return (

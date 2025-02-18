@@ -1,21 +1,16 @@
 {
   "app-users": [
     {
-      "id": "b8d6",
+      "id": "122e",
       "username": "Damon",
       "password": "pass"
     }
   ],
   "workouts": [
     {
-      "id": "2d1c",
-      "workout": "chest",
-      "userID": "b8d6"
-    },
-    {
-      "id": "01b5",
-      "workout": "Back",
-      "userID": "b8d6",
+      "id": "f138",
+      "workout": "Chest",
+      "userID": "122e",
       "day": "Monday"
     }
   ],
