@@ -1,20 +1,23 @@
 {
   "app-users": [
     {
-      "id": "122e",
+      "id": "1dcd",
       "username": "Damon",
       "password": "pass"
     }
   ],
   "workouts": [
     {
-      "id": "f138",
+      "id": "96ac",
       "workout": "Chest",
-      "userID": "122e",
+      "userID": "1dcd",
       "day": "Monday"
+    },
+    {
+      "id": "929a",
+      "workout": "Back",
+      "userID": "1dcd",
+      "day": "Tuesday"
     }
-  ],
-  "movements": [],
-  "oneRep": [],
-  "movementLogs": []
+  ]
 }

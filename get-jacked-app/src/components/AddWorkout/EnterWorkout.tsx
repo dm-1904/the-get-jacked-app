@@ -1,5 +1,7 @@
 import { useContext, useState } from "react";
 import { CreateWorkout } from "../../context/CreateWorkout";
+import { toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 export const EnterWorkout = () => {
   const newWorkout = useContext(CreateWorkout);
@@ -11,12 +13,28 @@ export const EnterWorkout = () => {
   }
   const { setWorkout, postWorkout } = newWorkout;
 
+  const formattedInput = (input: string) => {
+    return input.charAt(0).toUpperCase() + input.slice(1).toLowerCase();
+  };
+
+  const navigate = useNavigate();
+
   const handleNewWorkout = async (e: React.FormEvent) => {
     e.preventDefault();
-    setWorkout(inputWorkout);
-    await postWorkout(inputWorkout, selectedDay);
+    if (!inputWorkout) {
+      toast.error("Please enter a workout.");
+      return;
+    }
+    if (!selectedDay) {
+      toast.error("Please select a day.");
+      return;
+    }
+    const formattedWorkout = formattedInput(inputWorkout);
+    setWorkout(formattedWorkout);
+    await postWorkout(formattedWorkout, selectedDay);
     setInputWorkout("");
     setSelectedDay("");
+    navigate("/workout-schedule");
   };
 
   return (
