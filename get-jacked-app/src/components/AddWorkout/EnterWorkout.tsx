@@ -4,6 +4,7 @@ import { CreateWorkout } from "../../context/CreateWorkout";
 export const EnterWorkout = () => {
   const newWorkout = useContext(CreateWorkout);
   const [inputWorkout, setInputWorkout] = useState("");
+  const [selectedDay, setSelectedDay] = useState("");
 
   if (!newWorkout) {
     throw new Error("newWorkout does not exist");
@@ -13,9 +14,11 @@ export const EnterWorkout = () => {
   const handleNewWorkout = async (e: React.FormEvent) => {
     e.preventDefault();
     setWorkout(inputWorkout);
-    await postWorkout(inputWorkout);
+    await postWorkout(inputWorkout, selectedDay);
     setInputWorkout("");
+    setSelectedDay("");
   };
+
   return (
     <form
       action="submit"
@@ -29,6 +32,115 @@ export const EnterWorkout = () => {
         value={inputWorkout}
         onChange={(e) => setInputWorkout(e.target.value)}
       />
+      <div className="select-day-box">
+        <span>Select day to do this workout</span>
+        <div className="day-checker-box">
+          <input
+            type="radio"
+            id="sun"
+            name="day"
+            className="day-input"
+            value="Sunday"
+            onChange={(e) => setSelectedDay(e.target.value)}
+          />
+          <label
+            htmlFor="sun"
+            className="day-label"
+          >
+            S
+          </label>
+
+          <input
+            type="radio"
+            id="mon"
+            name="day"
+            className="day-input"
+            value="Monday"
+            onChange={(e) => setSelectedDay(e.target.value)}
+          />
+          <label
+            htmlFor="mon"
+            className="day-label"
+          >
+            M
+          </label>
+
+          <input
+            type="radio"
+            id="tues"
+            name="day"
+            className="day-input"
+            value="Tuesday"
+            onChange={(e) => setSelectedDay(e.target.value)}
+          />
+          <label
+            htmlFor="tues"
+            className="day-label"
+          >
+            T
+          </label>
+
+          <input
+            type="radio"
+            id="wed"
+            name="day"
+            className="day-input"
+            value="Wednesday"
+            onChange={(e) => setSelectedDay(e.target.value)}
+          />
+          <label
+            htmlFor="wed"
+            className="day-label"
+          >
+            W
+          </label>
+
+          <input
+            type="radio"
+            id="thurs"
+            name="day"
+            className="day-input"
+            value="Thursday"
+            onChange={(e) => setSelectedDay(e.target.value)}
+          />
+          <label
+            htmlFor="thurs"
+            className="day-label"
+          >
+            T
+          </label>
+
+          <input
+            type="radio"
+            id="fri"
+            name="day"
+            className="day-input"
+            value="Friday"
+            onChange={(e) => setSelectedDay(e.target.value)}
+          />
+          <label
+            htmlFor="fri"
+            className="day-label"
+          >
+            F
+          </label>
+
+          <input
+            type="radio"
+            id="sat"
+            name="day"
+            className="day-input"
+            value="Saturday"
+            onChange={(e) => setSelectedDay(e.target.value)}
+          />
+          <label
+            htmlFor="sat"
+            className="day-label"
+          >
+            S
+          </label>
+        </div>
+      </div>
       <button className="add-workout-button">Add Workout</button>
     </form>
   );

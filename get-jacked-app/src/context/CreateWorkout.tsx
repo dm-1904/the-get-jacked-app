@@ -10,7 +10,7 @@ import { CreateUser } from "./CreateUser";
 export type TWorkoutContex = {
   workout: string;
   setWorkout: (workout: string) => void;
-  postWorkout: (workout: string) => Promise<void>;
+  postWorkout: (workout: string, day: string) => Promise<void>;
 };
 
 const CreateWorkout = createContext<TWorkoutContex | undefined>(undefined);
@@ -33,11 +33,11 @@ const CreateWorkoutPro = ({ children }: { children: ReactNode }) => {
     }
   }, [setUserID]);
 
-  const postWorkout = async (workout: string) => {
+  const postWorkout = async (workout: string, day: string) => {
     const storedUser = localStorage.getItem("user");
     const { id: linkedID } = storedUser ? JSON.parse(storedUser) : { id: null };
     console.log("post", linkedID);
-    const newWorkout = { workout, userID: linkedID };
+    const newWorkout = { workout, userID: linkedID, day };
     return fetch("http://localhost:3000/workouts", {
       method: "POST",
       headers: {

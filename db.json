@@ -11,9 +11,15 @@
       "id": "2d1c",
       "workout": "chest",
       "userID": "b8d6"
+    },
+    {
+      "id": "01b5",
+      "workout": "Back",
+      "userID": "b8d6",
+      "day": "Monday"
     }
   ],
-  "oneRep": [],
   "movements": [],
+  "oneRep": [],
   "movementLogs": []
 }

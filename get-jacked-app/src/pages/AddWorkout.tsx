@@ -22,11 +22,19 @@ export const AddWorkout = () => {
       />
       <EnterWorkout />
 
-      {/* <input
-        type="text"
-        className="enter-workout"
-        placeholder="Enter workout (ex. Chest)"
-      /> */}
+      <div className="move-sets-inputs">
+        <input
+          type="text"
+          className="enter-movement"
+          placeholder="Enter Movement (ex. Benchpress)"
+        />
+        <input
+          type="text"
+          className="enter-sets"
+          placeholder="How many sets?"
+        />
+      </div>
+
       <div className="rep-box">
         <span>Track 1 Rep Max?</span>
         <input
@@ -53,114 +61,6 @@ export const AddWorkout = () => {
         >
           N
         </label>
-      </div>
-      <div className="select-day-box">
-        <span>Select day to do this workout</span>
-        <div className="day-checker-box">
-          <input
-            type="radio"
-            id="sun"
-            name="day"
-            className="day-input"
-          />
-          <label
-            htmlFor="sun"
-            className="day-label"
-          >
-            S
-          </label>
-
-          <input
-            type="radio"
-            id="mon"
-            name="day"
-            className="day-input"
-          />
-          <label
-            htmlFor="mon"
-            className="day-label"
-          >
-            M
-          </label>
-
-          <input
-            type="radio"
-            id="tues"
-            name="day"
-            className="day-input"
-          />
-          <label
-            htmlFor="tues"
-            className="day-label"
-          >
-            T
-          </label>
-
-          <input
-            type="radio"
-            id="wed"
-            name="day"
-            className="day-input"
-          />
-          <label
-            htmlFor="wed"
-            className="day-label"
-          >
-            W
-          </label>
-
-          <input
-            type="radio"
-            id="thurs"
-            name="day"
-            className="day-input"
-          />
-          <label
-            htmlFor="thurs"
-            className="day-label"
-          >
-            T
-          </label>
-
-          <input
-            type="radio"
-            id="fri"
-            name="day"
-            className="day-input"
-          />
-          <label
-            htmlFor="fri"
-            className="day-label"
-          >
-            F
-          </label>
-
-          <input
-            type="radio"
-            id="sat"
-            name="day"
-            className="day-input"
-          />
-          <label
-            htmlFor="sat"
-            className="day-label"
-          >
-            S
-          </label>
-        </div>
-      </div>
-
-      <div className="move-sets-inputs">
-        <input
-          type="text"
-          className="enter-movement"
-          placeholder="Enter Movement (ex. Benchpress)"
-        />
-        <input
-          type="text"
-          className="enter-sets"
-          placeholder="How many sets?"
-        />
       </div>
 
       <div className="add-movement-btn">
