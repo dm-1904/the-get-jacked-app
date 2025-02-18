@@ -19,15 +19,6 @@ const CreateUserPro = ({ children }: { children: ReactNode }) => {
   const [password, setPassword] = useState("");
   const [userID, setUserID] = useState("");
 
-  useEffect(() => {
-    const storedUser = localStorage.getItem("user");
-    if (storedUser) {
-      const { username, password } = JSON.parse(storedUser);
-      setUsername(username);
-      setPassword(password);
-    }
-  }, []);
-
   const postUser = async (username: string, password: string) => {
     const response = await fetch("http://localhost:3000/app-users");
     const users = await response.json();
@@ -41,7 +32,6 @@ const CreateUserPro = ({ children }: { children: ReactNode }) => {
     }
 
     const user = { username, password };
-    localStorage.setItem("user", JSON.stringify(user));
     return fetch("http://localhost:3000/app-users", {
       method: "POST",
       headers: {
@@ -55,10 +45,29 @@ const CreateUserPro = ({ children }: { children: ReactNode }) => {
         }
         return res.json();
       })
+      .then((data) => {
+        setUserID(data.id);
+        localStorage.setItem("user", JSON.stringify({ ...user, id: data.id }));
+        return data;
+      })
       .catch((error: Error) => {
         throw new Error(`Posting to 'app-users' failed: ${error.message}`);
       });
   };
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      const { username, password, id } = JSON.parse(storedUser);
+      setUsername(username);
+      setPassword(password);
+      setUserID(id);
+    }
+  }, []);
+
+  useEffect(() => {
+    console.log("Updated userID:", userID);
+  }, [userID]);
 
   return (
     <CreateUser.Provider

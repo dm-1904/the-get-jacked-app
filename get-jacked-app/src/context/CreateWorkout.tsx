@@ -23,7 +23,7 @@ const CreateWorkoutPro = ({ children }: { children: ReactNode }) => {
   if (!user) {
     throw new Error("CreateWorkoutProvider user not found");
   }
-  const { userID, setUserID } = user;
+  const { setUserID } = user;
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
@@ -31,11 +31,13 @@ const CreateWorkoutPro = ({ children }: { children: ReactNode }) => {
       const { id } = JSON.parse(storedUser);
       setUserID(id);
     }
-  });
+  }, [setUserID]);
 
   const postWorkout = async (workout: string) => {
-    console.log("post", userID);
-    const newWorkout = { workout, userID };
+    const storedUser = localStorage.getItem("user");
+    const { id: linkedID } = storedUser ? JSON.parse(storedUser) : { id: null };
+    console.log("post", linkedID);
+    const newWorkout = { workout, userID: linkedID };
     return fetch("http://localhost:3000/workouts", {
       method: "POST",
       headers: {

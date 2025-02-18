@@ -1,29 +1,19 @@
 {
   "app-users": [
     {
-      "id": "9632",
+      "id": "b8d6",
       "username": "Damon",
       "password": "pass"
     }
   ],
-  "oneRep": [],
   "workouts": [
     {
-      "id": "dc71",
+      "id": "2d1c",
       "workout": "chest",
-      "userID": "9632"
-    },
-    {
-      "id": "5c5f",
-      "workout": "back",
-      "userID": "9632"
-    },
-    {
-      "id": "3a52",
-      "workout": "arms",
-      "userID": "9632"
+      "userID": "b8d6"
     }
   ],
+  "oneRep": [],
   "movements": [],
   "movementLogs": []
 }

@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { toast } from "react-hot-toast";
 import { CreateUser } from "../context/CreateUser";
 import { Link, useNavigate } from "react-router-dom";
@@ -29,10 +29,7 @@ export const Login = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
       setUsername(user.username);
       setPassword(user.password);
       await setUserID(user.id);
-      console.log("login", userID);
-      // setID(user.id.toString());
       localStorage.setItem("user", JSON.stringify(user));
-      // localStorage.setItem("count", user.lastCount.toString());
       toast.success(`Welcome ${user.username}`);
       navigate("/dashboard");
     } else {
@@ -42,6 +39,10 @@ export const Login = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
     setInputUsername("");
     setInputPassword("");
   };
+
+  useEffect(() => {
+    console.log("Login userID:", userID);
+  }, [userID]);
 
   return (
     <div className="login-box">
