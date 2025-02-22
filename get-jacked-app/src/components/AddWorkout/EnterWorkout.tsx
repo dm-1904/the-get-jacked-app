@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { CreateWorkout } from "../../context/CreateWorkout";
 import { toast } from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 export const EnterWorkout = () => {
   const newWorkout = useContext(CreateWorkout);
@@ -17,7 +17,7 @@ export const EnterWorkout = () => {
     return input.charAt(0).toUpperCase() + input.slice(1).toLowerCase();
   };
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const handleNewWorkout = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -34,7 +34,7 @@ export const EnterWorkout = () => {
     await postWorkout(formattedWorkout, selectedDay);
     setInputWorkout("");
     setSelectedDay("");
-    navigate("/dashboard");
+    // navigate("/dashboard");
   };
 
   return (

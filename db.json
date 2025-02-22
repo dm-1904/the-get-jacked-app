@@ -13,35 +13,24 @@
   ],
   "workouts": [
     {
-      "id": "96ac",
+      "id": "5e20",
       "workout": "Chest",
       "userID": "1dcd",
       "day": "Monday"
-    },
-    {
-      "id": "929a",
-      "workout": "Back",
-      "userID": "1dcd",
-      "day": "Tuesday"
-    },
-    {
-      "id": "89ca",
-      "workout": "Arms",
-      "userID": "1dcd",
-      "day": "Wednesday"
-    },
-    {
-      "id": "f630",
-      "workout": "Test",
-      "userID": "1dcd",
-      "day": "Saturday"
-    },
-    {
-      "id": "0d08",
-      "workout": "Test test",
-      "userID": "1dcd",
-      "day": "Sunday"
     }
   ],
-  "movements": []
+  "movements": [
+    {
+      "id": "8931",
+      "movement": "Benchpress",
+      "workoutID": "5e20",
+      "sets": 5
+    },
+    {
+      "id": "7f84",
+      "movement": "Incline press",
+      "workoutID": "5e20",
+      "sets": 3
+    }
+  ]
 }
