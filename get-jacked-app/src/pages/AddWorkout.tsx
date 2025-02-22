@@ -47,7 +47,8 @@ export const AddWorkout = () => {
         <EnterMovement />
       )}
       <div className="button-group">
-        <button onClick={handleBack}>Back</button>
+        {!workoutSubmitted && <button onClick={handleDone}>Back</button>}
+        {workoutSubmitted && <button onClick={handleBack}>Back</button>}
         {workoutSubmitted && <button onClick={handleDone}>Save Workout</button>}
       </div>
     </div>

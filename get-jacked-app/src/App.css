@@ -128,6 +128,10 @@ a:hover {
 }
 
 .schedule-buttons {
+  display: flex;
+  flex-direction: column;
+  max-width: 70%;
+  justify-content: center;
   margin-top: 30px;
 }
 
@@ -138,6 +142,7 @@ a:hover {
   padding: 9px 19px;
   border-radius: 8px;
   color: white;
+  margin-bottom: 20px !important;
 }
 
 .rep-box {
@@ -153,13 +158,18 @@ a:hover {
 }
 
 .select-day-box {
+  margin-top: 0px;
   flex-direction: column;
 }
 
 .day-checker-box {
   display: flex;
   justify-content: center;
-  gap: 10px; /* Add gap between day labels */
+  gap: 10px;
+}
+
+.add-workout-button {
+  margin-bottom: 20px;
 }
 
 .rep-input,
