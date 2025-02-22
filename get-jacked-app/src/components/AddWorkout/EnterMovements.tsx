@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect, useCallback } from "react";
 import { CreateMovement } from "../../context/CreateMovements";
 import toast from "react-hot-toast";
 
@@ -6,6 +6,7 @@ export const EnterMovement = () => {
   const newMovement = useContext(CreateMovement);
   const [inputMovement, setInputMovement] = useState("");
   const [inputSets, setInputSets] = useState(0);
+  const [movements, setMovements] = useState([]);
 
   if (!newMovement) {
     throw new Error("newMovement does not exist");
@@ -32,7 +33,32 @@ export const EnterMovement = () => {
     await postMovementAndSets(formattedMovement, inputSets);
     setInputMovement("");
     setInputSets(0);
+    fetchMovements();
   };
+
+  const addedMovements = () => {
+    return fetch("http://localhost:3000/movements").then((res) => res.json());
+  };
+
+  const lastAddedWorkoutID = async () => {
+    const response = await fetch("http://localhost:3000/workouts");
+    const workouts = await response.json();
+    const lastWorkout = workouts[workouts.length - 1];
+    return lastWorkout.id;
+  };
+
+  const fetchMovements = useCallback(async () => {
+    const movements = await addedMovements();
+    const filterID = await lastAddedWorkoutID();
+    const filteredMovements = movements.filter(
+      (movement: { workoutID: number }) => movement.workoutID === filterID
+    );
+    setMovements(filteredMovements);
+  }, []);
+
+  useEffect(() => {
+    fetchMovements();
+  }, [fetchMovements]);
 
   return (
     <div className="movement-box">
@@ -62,6 +88,13 @@ export const EnterMovement = () => {
           src="/added-movements.jpeg"
           alt=""
         />
+        {movements.map(
+          (movement: { id: number; movement: string; sets: number }) => (
+            <div key={movement.id}>
+              {movement.movement} - {movement.sets} sets
+            </div>
+          )
+        )}
       </div>
     </div>
   );
