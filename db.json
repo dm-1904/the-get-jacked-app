@@ -4,6 +4,11 @@
       "id": "1dcd",
       "username": "Damon",
       "password": "pass"
+    },
+    {
+      "id": "971c",
+      "username": "test2",
+      "password": "pass"
     }
   ],
   "workouts": [
@@ -24,6 +29,12 @@
       "workout": "Arms",
       "userID": "1dcd",
       "day": "Wednesday"
+    },
+    {
+      "id": "f630",
+      "workout": "Test",
+      "userID": "1dcd",
+      "day": "Saturday"
     }
   ]
 }
