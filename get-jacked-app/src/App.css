@@ -128,11 +128,16 @@ a:hover {
 }
 
 .schedule-buttons {
-  display: flex;
-  flex-direction: column;
   max-width: 70%;
-  justify-content: center;
   margin-top: 30px;
+  margin: 0 auto;
+}
+
+.schedule-btn {
+  display: block;
+  margin: 0 auto;
+  margin-top: 20px;
+  min-width: 80%;
 }
 
 /* Page 4, Add Workout  */
@@ -211,4 +216,9 @@ a:hover {
 .add-movement-btn,
 .delete-movement-btn {
   margin: 20px 0;
+}
+
+.temp-added-movements {
+  color: red;
+  font-family: "Courier New", Courier, monospace;
 }

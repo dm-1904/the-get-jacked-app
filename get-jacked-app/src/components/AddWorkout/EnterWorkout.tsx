@@ -163,7 +163,7 @@ export const EnterWorkout = ({ onSubmit }: { onSubmit: () => void }) => {
           </label>
         </div>
       </div>
-      <button className="add-workout-button">Add Workout</button>
+      <button className="add-workout-button schedule-btn">Add Workout</button>
     </form>
   );
 };

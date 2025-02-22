@@ -83,7 +83,9 @@ export const EnterMovement = () => {
           value={inputSets}
           onChange={(e) => setInputSets(Number(e.target.value))}
         />
-        <button className="add-workout-button">Add Movement</button>
+        <button className="add-workout-button schedule-btn">
+          Add Movement
+        </button>
       </form>
       <div className="added-movements">
         <img
@@ -93,7 +95,10 @@ export const EnterMovement = () => {
         />
         {movements.map(
           (movement: { id: number; movement: string; sets: number }) => (
-            <div key={movement.id}>
+            <div
+              className="temp-added-movements"
+              key={movement.id}
+            >
               {movement.movement} - {movement.sets} sets
             </div>
           )

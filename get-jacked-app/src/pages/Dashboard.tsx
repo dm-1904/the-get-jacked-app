@@ -73,8 +73,18 @@ export const Dashboard = () => {
         )}
       </div>
       <div className="schedule-buttons">
-        <button onClick={handleEditWorkouts}>Add Workouts</button>
-        <button onClick={handleLogout}>Logout</button>
+        <button
+          className="schedule-btn"
+          onClick={handleEditWorkouts}
+        >
+          Add Workouts
+        </button>
+        <button
+          className="schedule-btn"
+          onClick={handleLogout}
+        >
+          Logout
+        </button>
       </div>
     </div>
   );

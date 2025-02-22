@@ -11,6 +11,50 @@
       "password": "pass"
     }
   ],
-  "workouts": [],
-  "movements": []
+  "workouts": [
+    {
+      "id": "5c5d",
+      "workout": "Chest",
+      "userID": "1dcd",
+      "day": "Monday"
+    },
+    {
+      "id": "bde8",
+      "workout": "Back",
+      "userID": "1dcd",
+      "day": "Tuesday"
+    },
+    {
+      "id": "8e81",
+      "workout": "Test",
+      "userID": "1dcd",
+      "day": "Wednesday"
+    }
+  ],
+  "movements": [
+    {
+      "id": "5645",
+      "movement": "Benchpress",
+      "workoutID": "5c5d",
+      "sets": 5
+    },
+    {
+      "id": "02bb",
+      "movement": "Incline press",
+      "workoutID": "5c5d",
+      "sets": 3
+    },
+    {
+      "id": "31f9",
+      "movement": "Pulldowns",
+      "workoutID": "bde8",
+      "sets": 5
+    },
+    {
+      "id": "7a4e",
+      "movement": "Test",
+      "workoutID": "8e81",
+      "sets": 6
+    }
+  ]
 }
