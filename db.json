@@ -35,6 +35,13 @@
       "workout": "Test",
       "userID": "1dcd",
       "day": "Saturday"
+    },
+    {
+      "id": "0d08",
+      "workout": "Test test",
+      "userID": "1dcd",
+      "day": "Sunday"
     }
-  ]
+  ],
+  "movements": []
 }

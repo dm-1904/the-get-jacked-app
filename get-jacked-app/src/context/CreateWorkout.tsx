@@ -10,6 +10,8 @@ import { CreateUser } from "./CreateUser";
 export type TWorkoutContex = {
   workout: string;
   setWorkout: (workout: string) => void;
+  workoutID: string;
+  setWorkoutID: (workoutID: string) => void;
   postWorkout: (workout: string, day: string) => Promise<void>;
 };
 
@@ -17,11 +19,12 @@ const CreateWorkout = createContext<TWorkoutContex | undefined>(undefined);
 
 const CreateWorkoutPro = ({ children }: { children: ReactNode }) => {
   const [workout, setWorkout] = useState("");
+  const [workoutID, setWorkoutID] = useState("");
   // const [oneRep, setOneRep] = useState("");
 
   const user = useContext(CreateUser);
   if (!user) {
-    throw new Error("CreateWorkoutProvider user not found");
+    throw new Error("CreateUserProvider user not found");
   }
   const { setUserID } = user;
 
@@ -36,7 +39,7 @@ const CreateWorkoutPro = ({ children }: { children: ReactNode }) => {
   const postWorkout = async (workout: string, day: string) => {
     const storedUser = localStorage.getItem("user");
     const { id: linkedID } = storedUser ? JSON.parse(storedUser) : { id: null };
-    console.log("post", linkedID);
+    // console.log("post", linkedID);
     const newWorkout = { workout, userID: linkedID, day };
     return fetch("http://localhost:3000/workouts", {
       method: "POST",
@@ -51,13 +54,23 @@ const CreateWorkoutPro = ({ children }: { children: ReactNode }) => {
         }
         return res.json();
       })
+      .then((data) => {
+        setWorkoutID(data.id);
+        localStorage.setItem(
+          "workout",
+          JSON.stringify({ ...newWorkout, id: data.id })
+        );
+        return data;
+      })
       .catch((error: Error) => {
         throw new Error(`Posting to 'workouts' failed: ${error.message}`);
       });
   };
 
   return (
-    <CreateWorkout.Provider value={{ workout, setWorkout, postWorkout }}>
+    <CreateWorkout.Provider
+      value={{ workout, setWorkout, postWorkout, workoutID, setWorkoutID }}
+    >
       {children}
     </CreateWorkout.Provider>
   );
