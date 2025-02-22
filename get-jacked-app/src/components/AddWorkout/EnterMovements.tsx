@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect, useCallback } from "react";
+import { useContext, useState, useEffect, useCallback, useRef } from "react";
 import { CreateMovement } from "../../context/CreateMovements";
 import toast from "react-hot-toast";
 
@@ -7,6 +7,7 @@ export const EnterMovement = () => {
   const [inputMovement, setInputMovement] = useState("");
   const [inputSets, setInputSets] = useState(0);
   const [movements, setMovements] = useState([]);
+  const movementInputRef = useRef<HTMLInputElement>(null);
 
   if (!newMovement) {
     throw new Error("newMovement does not exist");
@@ -34,6 +35,7 @@ export const EnterMovement = () => {
     setInputMovement("");
     setInputSets(0);
     fetchMovements();
+    movementInputRef.current?.focus();
   };
 
   const addedMovements = () => {
@@ -69,14 +71,15 @@ export const EnterMovement = () => {
       >
         <input
           type="text"
-          className="enter-workout"
+          className="enter-workout enter-movement"
           placeholder="Enter Movement"
           value={inputMovement}
           onChange={(e) => setInputMovement(e.target.value)}
+          ref={movementInputRef}
         />
         <input
           type="number"
-          className="enter-workout"
+          className="enter-workout enter-sets"
           value={inputSets}
           onChange={(e) => setInputSets(Number(e.target.value))}
         />
