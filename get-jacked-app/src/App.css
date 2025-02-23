@@ -91,7 +91,7 @@ a:hover {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-between; /* Change to space-between */
   align-items: center;
   padding-top: 50px;
 }
@@ -125,13 +125,33 @@ a:hover {
 
 .movements-list {
   text-align: left;
-  margin-left: 20px; /* Add margin to move it to the left */
+  margin-left: 20px;
+  font-size: 20px;
+}
+
+.workout-list-btn-box {
+  display: flex;
+  justify-content: center;
+  justify-content: space-around;
+  margin-bottom: 50px;
+}
+
+.workout-list-btn-box button {
+  width: 250px;
 }
 
 .schedule-buttons {
+  position: absolute;
   max-width: 70%;
   margin-top: 30px;
   margin: 0 auto;
+  bottom: 30px;
+  width: 400px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  /* margin-bottom: 20px;
+  align-self: flex-end;  */
 }
 
 .schedule-btn {

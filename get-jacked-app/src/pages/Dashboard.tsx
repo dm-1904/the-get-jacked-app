@@ -114,6 +114,14 @@ export const Dashboard = () => {
                           {movement.movement} - {movement.sets} sets
                         </p>
                       ))}
+                    <div className="workout-list-btn-box">
+                      <button className="workout-list-edit-btn">
+                        Edit Workout
+                      </button>
+                      <button className="workout-list-start-btn">
+                        Start Workout
+                      </button>
+                    </div>
                   </div>
                 )}
               </div>

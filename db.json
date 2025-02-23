@@ -29,6 +29,12 @@
       "workout": "Test",
       "userID": "1dcd",
       "day": "Wednesday"
+    },
+    {
+      "id": "12e4",
+      "workout": "Core",
+      "userID": "1dcd",
+      "day": "Saturday"
     }
   ],
   "movements": [
@@ -54,6 +60,12 @@
       "id": "7a4e",
       "movement": "Test",
       "workoutID": "8e81",
+      "sets": 6
+    },
+    {
+      "id": "b5be",
+      "movement": "Situps",
+      "workoutID": "12e4",
       "sets": 6
     }
   ]
