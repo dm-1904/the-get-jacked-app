@@ -6,7 +6,15 @@ export const Dashboard = () => {
   const [expandedWorkoutId, setExpandedWorkoutId] = useState<string | null>(
     null
   );
-  const [movementsList, setMovementsList] = useState([]);
+
+  interface Movement {
+    id: string;
+    workoutID: string;
+    movement: string;
+    sets: number;
+  }
+
+  const [movementsList, setMovementsList] = useState<Movement[]>([]);
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -88,17 +96,20 @@ export const Dashboard = () => {
             (workout: { id: string; workout: string; day: string }) => (
               <div
                 onClick={() => toggleExpand(workout.id)}
-                className="workout-list-item"
+                className="workout-list-box"
                 key={workout.id}
               >
-                <p>
+                <p className="workout-list-item">
                   {workout.day} - {workout.workout}
                 </p>
                 {expandedWorkoutId === workout.id && (
                   <div className="movements-list">
                     {movementsList
-                      .filter((movement) => movement.workoutID === workout.id)
-                      .map((movement) => (
+                      .filter(
+                        (movement: Movement) =>
+                          movement.workoutID === workout.id
+                      )
+                      .map((movement: Movement) => (
                         <p key={movement.id}>
                           {movement.movement} - {movement.sets} sets
                         </p>

@@ -120,11 +120,12 @@ a:hover {
   border: 1px solid white;
   border-radius: 8px;
   margin: 5px;
+  font-size: 40px;
 }
 
-.workout-list-item p {
-  margin: 0px;
-  font-size: 40px;
+.movements-list {
+  text-align: left;
+  margin-left: 20px; /* Add margin to move it to the left */
 }
 
 .schedule-buttons {
