@@ -12,7 +12,13 @@ import { BrowserRouter } from "react-router-dom";
 import { CreateUserPro } from "./context/CreateUser";
 
 function App() {
-  const isLoggedIn = false; // Replace with actual login state
+  const isLoggedIn = false;
+  // const workoutEdit = useContext(CreateMovement);
+  // if (!workoutEdit) {
+  //   throw new Error("workoutEdit is null");
+  // }
+
+  // const { editWorkoutID } = workoutEdit;
 
   return (
     <BrowserRouter

@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { CreateMovement } from "../context/CreateMovements";
 
 export const Dashboard = () => {
   const [workoutList, setWorkoutList] = useState([]);
@@ -17,13 +18,26 @@ export const Dashboard = () => {
   const [movementsList, setMovementsList] = useState<Movement[]>([]);
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    localStorage.removeItem("user");
-    navigate("/");
+  const workoutEdit = useContext(CreateMovement);
+  if (!workoutEdit) {
+    throw new Error("workoutEdit is null");
+  }
+
+  const { setEditWorkoutID } = workoutEdit;
+
+  const handleEdit = (workoutId: string) => {
+    setEditWorkoutID(workoutId);
+    navigate("/edit-workout");
   };
 
-  const handleEditWorkouts = () => {
+  const handleAddWorkout = () => {
     navigate("/add-workout");
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    localStorage.removeItem("workout");
+    navigate("/");
   };
 
   const getWorkouts = () => {
@@ -115,7 +129,10 @@ export const Dashboard = () => {
                         </p>
                       ))}
                     <div className="workout-list-btn-box">
-                      <button className="workout-list-edit-btn">
+                      <button
+                        onClick={() => handleEdit(workout.id)}
+                        className="workout-list-edit-btn"
+                      >
                         Edit Workout
                       </button>
                       <button className="workout-list-start-btn">
@@ -134,7 +151,7 @@ export const Dashboard = () => {
       <div className="schedule-buttons">
         <button
           className="schedule-btn"
-          onClick={handleEditWorkouts}
+          onClick={handleAddWorkout}
         >
           Add Workouts
         </button>

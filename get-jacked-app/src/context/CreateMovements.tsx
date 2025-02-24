@@ -12,6 +12,8 @@ export type TMovementContext = {
   setMovement: (movement: string) => void;
   sets: number;
   setSets: (sets: number) => void;
+  editWorkoutID: string;
+  setEditWorkoutID: (editWorkoutID: string) => void;
   postMovementAndSets: (movement: string, sets: number) => Promise<void>;
 };
 
@@ -20,6 +22,7 @@ const CreateMovement = createContext<TMovementContext | undefined>(undefined);
 const CreateMovementPro = ({ children }: { children: ReactNode }) => {
   const [movement, setMovement] = useState("");
   const [sets, setSets] = useState(0);
+  const [editWorkoutID, setEditWorkoutID] = useState("");
 
   const useWorkout = useContext(CreateWorkout);
   if (!useWorkout) {
@@ -62,7 +65,15 @@ const CreateMovementPro = ({ children }: { children: ReactNode }) => {
 
   return (
     <CreateMovement.Provider
-      value={{ movement, setMovement, sets, setSets, postMovementAndSets }}
+      value={{
+        movement,
+        setMovement,
+        sets,
+        setSets,
+        postMovementAndSets,
+        editWorkoutID,
+        setEditWorkoutID,
+      }}
     >
       {children}
     </CreateMovement.Provider>
