@@ -6,11 +6,18 @@ interface WorkoutDetails {
   workout: string;
 }
 
+interface MovementDetails {
+  id: string;
+  movement: string;
+  sets: number;
+}
+
 export const EditWorkout = () => {
   const navigate = useNavigate();
   const [workoutDetails, setWorkoutDetails] = useState<WorkoutDetails | null>(
     null
   );
+  const [movementDetails, setMovementDetails] = useState<MovementDetails[]>([]);
 
   const workoutEdit = useContext(CreateMovement);
   if (!workoutEdit) {
@@ -23,11 +30,16 @@ export const EditWorkout = () => {
     const fetchWorkoutDetails = async () => {
       if (editWorkoutID) {
         try {
-          const response = await fetch(
+          const workoutNameResponse = await fetch(
             `http://localhost:3000/workouts/${editWorkoutID}`
           );
-          const data = await response.json();
-          setWorkoutDetails(data);
+          const nameData = await workoutNameResponse.json();
+          setWorkoutDetails(nameData);
+          const movementDetailsResponse = await fetch(
+            `http://localhost:3000/movements?workoutID=${editWorkoutID}`
+          );
+          const movementData = await movementDetailsResponse.json();
+          setMovementDetails(movementData);
         } catch (err: unknown) {
           if (err instanceof Error) {
             console.error(`Failed to fetch workout details: ${err.message}`);
@@ -54,6 +66,13 @@ export const EditWorkout = () => {
             This is the Edit Workout page. Here you can edit your workout
             details. This will be specific to an individual workout. For
             example, Chest.
+          </div>
+          <div>
+            {movementDetails.map((movement) => (
+              <p key={movement.id}>
+                {movement.movement} - {movement.sets} sets
+              </p>
+            ))}
           </div>
           <button onClick={handleDone}>Done</button>
         </div>
