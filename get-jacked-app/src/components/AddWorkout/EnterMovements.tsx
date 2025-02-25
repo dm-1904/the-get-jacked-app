@@ -2,7 +2,11 @@ import { useContext, useState, useEffect, useCallback, useRef } from "react";
 import { CreateMovement } from "../../context/CreateMovements";
 import toast from "react-hot-toast";
 
-export const EnterMovement = () => {
+interface EnterMovementProps {
+  workoutID: string;
+}
+
+export const EnterMovement = ({ workoutID }: EnterMovementProps) => {
   const newMovement = useContext(CreateMovement);
   const [inputMovement, setInputMovement] = useState("");
   const [inputSets, setInputSets] = useState(0);
@@ -31,7 +35,7 @@ export const EnterMovement = () => {
     const formattedMovement = formattedInput(inputMovement);
     setMovement(formattedMovement);
     setSets(inputSets);
-    await postMovementAndSets(formattedMovement, inputSets);
+    await postMovementAndSets(formattedMovement, inputSets, workoutID);
     setInputMovement("");
     setInputSets(0);
     fetchMovements();
@@ -42,21 +46,13 @@ export const EnterMovement = () => {
     return fetch("http://localhost:3000/movements").then((res) => res.json());
   };
 
-  const lastAddedWorkoutID = async () => {
-    const response = await fetch("http://localhost:3000/workouts");
-    const workouts = await response.json();
-    const lastWorkout = workouts[workouts.length - 1];
-    return lastWorkout.id;
-  };
-
   const fetchMovements = useCallback(async () => {
     const movements = await addedMovements();
-    const filterID = await lastAddedWorkoutID();
     const filteredMovements = movements.filter(
-      (movement: { workoutID: number }) => movement.workoutID === filterID
+      (movement: { workoutID: string }) => movement.workoutID === workoutID
     );
     setMovements(filteredMovements);
-  }, []);
+  }, [workoutID]);
 
   useEffect(() => {
     fetchMovements();

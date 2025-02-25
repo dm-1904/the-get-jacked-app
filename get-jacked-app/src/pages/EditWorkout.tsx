@@ -168,7 +168,7 @@ export const EditWorkout = () => {
       >
         Done
       </button>
-      {addMovement && <EnterMovement />}
+      {addMovement && <EnterMovement workoutID={editWorkoutID} />}
     </div>
   );
 };

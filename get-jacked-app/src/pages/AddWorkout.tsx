@@ -53,7 +53,7 @@ export const AddWorkout = () => {
       {!workoutSubmitted ? (
         <EnterWorkout onSubmit={() => setWorkoutSubmitted(true)} />
       ) : (
-        <EnterMovement />
+        <EnterMovement workoutID={""} />
       )}
       <div className="button-group">
         {!workoutSubmitted && (

@@ -14,7 +14,11 @@ export type TMovementContext = {
   setSets: (sets: number) => void;
   editWorkoutID: string;
   setEditWorkoutID: (editWorkoutID: string) => void;
-  postMovementAndSets: (movement: string, sets: number) => Promise<void>;
+  postMovementAndSets: (
+    movement: string,
+    sets: number,
+    workoutID: string
+  ) => Promise<void>;
 };
 
 const CreateMovement = createContext<TMovementContext | undefined>(undefined);
@@ -39,12 +43,12 @@ const CreateMovementPro = ({ children }: { children: ReactNode }) => {
     }
   }, [setWorkoutID]);
 
-  const postMovementAndSets = async (movement: string, sets: number) => {
-    const storedWorkout = localStorage.getItem("workout");
-    const { id: linkedID } = storedWorkout
-      ? JSON.parse(storedWorkout)
-      : { id: null };
-    const newMovement = { movement, workoutID: linkedID, sets };
+  const postMovementAndSets = async (
+    movement: string,
+    sets: number,
+    workoutID: string
+  ) => {
+    const newMovement = { movement, workoutID, sets };
     return fetch("http://localhost:3000/movements", {
       method: "POST",
       headers: {
