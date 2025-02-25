@@ -1,9 +1,9 @@
-import { useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CreateMovement } from "../context/CreateMovements";
 
 export const Dashboard = () => {
-  const [workoutList, setWorkoutList] = useState([]);
+  const [workoutList, setWorkoutList] = useState<Workout[]>([]);
   const [expandedWorkoutId, setExpandedWorkoutId] = useState<string | null>(
     null
   );
@@ -53,6 +53,33 @@ export const Dashboard = () => {
     return storedUser ? JSON.parse(storedUser).id : null;
   };
 
+  // const sortDays = (days: []) => {
+  //   const order = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+  //   return days.slice().sort((a, b) => order.indexOf(a) - order.indexOf(b))
+  // }
+
+  interface Workout {
+    id: string;
+    workout: string;
+    day: string;
+    userID: string;
+  }
+
+  const sortWorkoutsByDay = useCallback((workouts: Workout[]) => {
+    const daysOrder = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+    return workouts.slice().sort((a, b) => {
+      return daysOrder.indexOf(a.day) - daysOrder.indexOf(b.day);
+    });
+  }, []);
+
   useEffect(() => {
     const fetchWorkouts = async () => {
       try {
@@ -61,13 +88,14 @@ export const Dashboard = () => {
         const userWorkouts = workouts.filter((workout: { userID: string }) => {
           return workout.userID === userID;
         });
-        setWorkoutList(userWorkouts);
+        const sortedWorkouts = sortWorkoutsByDay(userWorkouts);
+        setWorkoutList(sortedWorkouts);
       } catch (err) {
         console.error(err);
       }
     };
     fetchWorkouts();
-  }, []);
+  }, [sortWorkoutsByDay]);
 
   const toggleExpand = (workoutId: string) => {
     setExpandedWorkoutId((prev) => (prev === workoutId ? null : workoutId));

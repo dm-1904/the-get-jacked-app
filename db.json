@@ -13,54 +13,36 @@
   ],
   "workouts": [
     {
-      "id": "bde8",
-      "workout": "Back",
+      "id": "069a",
+      "workout": "Chest",
       "userID": "1dcd",
-      "day": "Tuesday"
-    },
-    {
-      "id": "8e81",
-      "workout": "Test",
-      "userID": "1dcd",
-      "day": "Wednesday"
-    },
-    {
-      "id": "12e4",
-      "workout": "Core",
-      "userID": "1dcd",
-      "day": "Saturday"
+      "day": "Monday"
     }
   ],
   "movements": [
     {
-      "id": "31f9",
-      "movement": "Pulldowns",
-      "workoutID": "bde8",
-      "sets": 5
-    },
-    {
-      "id": "7a4e",
-      "movement": "Test",
-      "workoutID": "8e81",
+      "id": "d019",
+      "movement": "Benchpress",
+      "workoutID": "",
       "sets": 6
     },
     {
-      "id": "b5be",
-      "movement": "Situps",
-      "workoutID": "12e4",
-      "sets": 6
-    },
-    {
-      "id": "238d",
-      "movement": "Back test",
-      "workoutID": "bde8",
+      "id": "81d0",
+      "movement": "Incline press",
+      "workoutID": "",
       "sets": 3
     },
     {
-      "id": "04ce",
-      "movement": "Test2",
-      "workoutID": "8e81",
-      "sets": 6
+      "id": "dc77",
+      "movement": "Tricep ext",
+      "workoutID": "",
+      "sets": 4
+    },
+    {
+      "id": "dbac",
+      "movement": "Test",
+      "workoutID": "",
+      "sets": 3
     }
   ]
 }
