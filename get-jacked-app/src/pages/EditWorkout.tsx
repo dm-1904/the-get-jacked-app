@@ -56,8 +56,14 @@ export const EditWorkout = () => {
     navigate("/dashboard");
   };
 
-  const handleDelete = (arg: string) => {
-    console.log(`deleting ${arg}`);
+  const handleDelete = (endpoint: string, id: string) => {
+    return fetch(`http://localhost:3000/${endpoint}/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .catch((err: Error) => {
+        throw new Error(`HTTP request handleDelete failed: ${err.message}`);
+      });
   };
 
   return (
