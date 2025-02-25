@@ -1,11 +1,20 @@
-import { useState } from "react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { EnterWorkout } from "../components/AddWorkout/EnterWorkout";
 import { EnterMovement } from "../components/AddWorkout/EnterMovements";
+import { CreateWorkout } from "../context/CreateWorkout";
 
 export const AddWorkout = () => {
   const navigate = useNavigate();
-  const [workoutSubmitted, setWorkoutSubmitted] = useState(false);
+  // const [workoutSubmitted, setWorkoutSubmitted] = useState(false);
+
+  const submitted = useContext(CreateWorkout);
+
+  if (!submitted) {
+    throw new Error("Submitted has no value");
+  }
+
+  const { workoutSubmitted, setWorkoutSubmitted } = submitted;
 
   const handleBack = async () => {
     const storedWorkout = localStorage.getItem("workout");

@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CreateMovement } from "../context/CreateMovements";
+import { EnterMovement } from "../components/AddWorkout/EnterMovements";
 
 interface WorkoutDetails {
   workout: string;
@@ -18,13 +19,14 @@ export const EditWorkout = () => {
     null
   );
   const [movementDetails, setMovementDetails] = useState<MovementDetails[]>([]);
+  const [addMovement, setAddMovement] = useState(false);
 
   const workoutEdit = useContext(CreateMovement);
   if (!workoutEdit) {
     throw new Error("workoutEdit is null");
   }
 
-  const { editWorkoutID } = workoutEdit;
+  const { editWorkoutID, setEditWorkoutID } = workoutEdit;
 
   useEffect(() => {
     const fetchWorkoutDetails = async () => {
@@ -53,6 +55,7 @@ export const EditWorkout = () => {
   }, [editWorkoutID]);
 
   const handleDone = () => {
+    setAddMovement(false);
     navigate("/dashboard");
   };
 
@@ -72,10 +75,8 @@ export const EditWorkout = () => {
   };
 
   const handleDeleteWorkout = async () => {
-    if (!workoutDetails) return; // Ensure there's a workout to delete
-
+    if (!workoutDetails) return;
     try {
-      // Delete all movements associated with the workout
       await Promise.all(
         movementDetails.map((movement) =>
           fetch(`http://localhost:3000/movements/${movement.id}`, {
@@ -83,20 +84,21 @@ export const EditWorkout = () => {
           })
         )
       );
-
-      // Now delete the workout itself
       await fetch(
         `http://localhost:3000/workouts/${workoutEdit.editWorkoutID}`,
         {
           method: "DELETE",
         }
       );
-
-      // Optionally, update your state or navigate away after deletion
       navigate("/dashboard");
     } catch (err) {
       console.error("Error deleting workout and movements:", err);
     }
+  };
+
+  const handleNewMovements = () => {
+    setEditWorkoutID(editWorkoutID);
+    setAddMovement(true);
   };
 
   return (
@@ -109,7 +111,7 @@ export const EditWorkout = () => {
       <div className="warning-box">
         <h1 className="warning">WARNING</h1>
         <p className="warning-content">
-          Deleting a workout will delete all of it's saved data. <br />
+          Deleting a workout will delete all of its saved data. <br />
           This cannot be undone!
         </p>
       </div>
@@ -121,11 +123,11 @@ export const EditWorkout = () => {
           <div className="edit-workout-movement-box">
             <div className="edit-workout-workout-movements">
               {movementDetails.map((movement) => (
-                <div className="movement-map">
-                  <p
-                    className="edit-workout-movements"
-                    key={movement.id}
-                  >
+                <div
+                  className="movement-map"
+                  key={movement.id}
+                >
+                  <p className="edit-workout-movements">
                     {movement.movement} - {movement.sets} sets
                   </p>
 
@@ -139,16 +141,23 @@ export const EditWorkout = () => {
               ))}
             </div>
           </div>
+          {!addMovement && (
+            <div className="delete-add-buttons">
+              <button
+                onClick={handleDeleteWorkout}
+                className="delete-entire-workout"
+              >
+                Delete Entire Workout
+              </button>
 
-          <div className="delete-add-buttons">
-            <button
-              onClick={handleDeleteWorkout}
-              className="delete-entire-workout"
-            >
-              Delete Entire Workout
-            </button>
-            <button className="add-movement">Add Movement</button>
-          </div>
+              <button
+                onClick={handleNewMovements}
+                className="add-movement"
+              >
+                Add Movement
+              </button>
+            </div>
+          )}
         </div>
       ) : (
         <p>Loading workout details...</p>
@@ -159,6 +168,7 @@ export const EditWorkout = () => {
       >
         Done
       </button>
+      {addMovement && <EnterMovement />}
     </div>
   );
 };
