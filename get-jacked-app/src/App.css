@@ -243,3 +243,44 @@ a:hover {
   color: red;
   font-family: "Courier New", Courier, monospace;
 }
+
+/* edit workout  */
+
+.warning {
+  margin-bottom: 0;
+}
+
+.warning,
+.warning-content {
+  color: red;
+}
+
+.edit-workout-workout-header {
+  text-align: left;
+  margin-left: 50px;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 40px;
+}
+
+.edit-workout-movements {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 20px;
+}
+
+.movement-map {
+  display: flex;
+  margin: 0 50px;
+  justify-content: space-between;
+}
+
+.delete-button {
+  margin: 10px 0;
+  width: 20vw;
+}
+
+.delete-add-buttons button {
+  display: block;
+  margin: 0 auto;
+  margin-top: 30px;
+  width: 40vw;
+}

@@ -56,25 +56,63 @@ export const EditWorkout = () => {
     navigate("/dashboard");
   };
 
+  const handleDelete = (arg: string) => {
+    console.log(`deleting ${arg}`);
+  };
+
   return (
     <div>
-      <h3 className="page-title">Edit Workout</h3>
+      <img
+        src="/edit-workout.jpeg"
+        className="page-title"
+        alt=""
+      />
+      <div className="warning-box">
+        <h1 className="warning">WARNING</h1>
+        <p className="warning-content">
+          Deleting a workout will delete all of it's saved data. <br />
+          This cannot be undone!
+        </p>
+      </div>
       {workoutDetails ? (
         <div>
-          <h2>{workoutDetails.workout}</h2>
-          <div>
-            This is the Edit Workout page. Here you can edit your workout
-            details. This will be specific to an individual workout. For
-            example, Chest.
+          <h2 className="edit-workout-workout-header">
+            {workoutDetails.workout}
+          </h2>
+          <div className="edit-workout-movement-box">
+            <div className="edit-workout-workout-movements">
+              {movementDetails.map((movement) => (
+                <div className="movement-map">
+                  <p
+                    className="edit-workout-movements"
+                    key={movement.id}
+                  >
+                    {movement.movement} - {movement.sets} sets
+                  </p>
+
+                  <button
+                    onClick={() => handleDelete(movement.movement)}
+                    className="delete-button"
+                  >
+                    Delete
+                  </button>
+                </div>
+              ))}
+            </div>
           </div>
-          <div>
-            {movementDetails.map((movement) => (
-              <p key={movement.id}>
-                {movement.movement} - {movement.sets} sets
-              </p>
-            ))}
+
+          <button
+            className="schedule-buttons"
+            onClick={handleDone}
+          >
+            Done
+          </button>
+          <div className="delete-add-buttons">
+            <button className="delete-entire-workout">
+              Delete Entire Workout
+            </button>
+            <button className="add-movement">Add Movement</button>
           </div>
-          <button onClick={handleDone}>Done</button>
         </div>
       ) : (
         <p>Loading workout details...</p>
