@@ -42,9 +42,9 @@ export const EditWorkout = () => {
           setMovementDetails(movementData);
         } catch (err: unknown) {
           if (err instanceof Error) {
-            console.error(`Failed to fetch workout details: ${err.message}`);
-          } else {
-            console.error("Failed to fetch workout details");
+            throw new Error(
+              `HTTP request fetchWorkoutDetails failed: ${err.message}`
+            );
           }
         }
       }
@@ -61,9 +61,42 @@ export const EditWorkout = () => {
       method: "DELETE",
     })
       .then((res) => res.json())
+      .then(() => {
+        setMovementDetails((prevMovements) =>
+          prevMovements.filter((movement) => movement.id !== id)
+        );
+      })
       .catch((err: Error) => {
         throw new Error(`HTTP request handleDelete failed: ${err.message}`);
       });
+  };
+
+  const handleDeleteWorkout = async () => {
+    if (!workoutDetails) return; // Ensure there's a workout to delete
+
+    try {
+      // Delete all movements associated with the workout
+      await Promise.all(
+        movementDetails.map((movement) =>
+          fetch(`http://localhost:3000/movements/${movement.id}`, {
+            method: "DELETE",
+          })
+        )
+      );
+
+      // Now delete the workout itself
+      await fetch(
+        `http://localhost:3000/workouts/${workoutEdit.editWorkoutID}`,
+        {
+          method: "DELETE",
+        }
+      );
+
+      // Optionally, update your state or navigate away after deletion
+      navigate("/dashboard");
+    } catch (err) {
+      console.error("Error deleting workout and movements:", err);
+    }
   };
 
   return (
@@ -97,7 +130,7 @@ export const EditWorkout = () => {
                   </p>
 
                   <button
-                    onClick={() => handleDelete(movement.movement)}
+                    onClick={() => handleDelete("movements", movement.id)}
                     className="delete-button"
                   >
                     Delete
@@ -107,14 +140,11 @@ export const EditWorkout = () => {
             </div>
           </div>
 
-          <button
-            className="schedule-buttons"
-            onClick={handleDone}
-          >
-            Done
-          </button>
           <div className="delete-add-buttons">
-            <button className="delete-entire-workout">
+            <button
+              onClick={handleDeleteWorkout}
+              className="delete-entire-workout"
+            >
               Delete Entire Workout
             </button>
             <button className="add-movement">Add Movement</button>
@@ -123,6 +153,12 @@ export const EditWorkout = () => {
       ) : (
         <p>Loading workout details...</p>
       )}
+      <button
+        className="schedule-buttons"
+        onClick={handleDone}
+      >
+        Done
+      </button>
     </div>
   );
 };

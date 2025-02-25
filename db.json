@@ -13,12 +13,6 @@
   ],
   "workouts": [
     {
-      "id": "5c5d",
-      "workout": "Chest",
-      "userID": "1dcd",
-      "day": "Monday"
-    },
-    {
       "id": "bde8",
       "workout": "Back",
       "userID": "1dcd",
@@ -38,18 +32,6 @@
     }
   ],
   "movements": [
-    {
-      "id": "5645",
-      "movement": "Benchpress",
-      "workoutID": "5c5d",
-      "sets": 5
-    },
-    {
-      "id": "02bb",
-      "movement": "Incline press",
-      "workoutID": "5c5d",
-      "sets": 3
-    },
     {
       "id": "31f9",
       "movement": "Pulldowns",
