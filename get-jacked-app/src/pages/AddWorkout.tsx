@@ -14,7 +14,7 @@ export const AddWorkout = () => {
     throw new Error("Submitted has no value");
   }
 
-  // const { workoutSubmitted, setWorkoutSubmitted } = submitted;
+  const { workoutID } = submitted;
 
   const handleBack = async () => {
     const storedWorkout = localStorage.getItem("workout");
@@ -53,7 +53,7 @@ export const AddWorkout = () => {
       {!workoutSubmitted ? (
         <EnterWorkout onSubmit={() => setWorkoutSubmitted(true)} />
       ) : (
-        <EnterMovement workoutID={""} />
+        <EnterMovement workoutID={workoutID} />
       )}
       <div className="button-group">
         {!workoutSubmitted && (

@@ -17,32 +17,26 @@
       "workout": "Chest",
       "userID": "1dcd",
       "day": "Monday"
+    },
+    {
+      "id": "7272",
+      "workout": "Back",
+      "userID": "1dcd",
+      "day": "Tuesday"
     }
   ],
   "movements": [
     {
-      "id": "d019",
+      "id": "e0c1",
       "movement": "Benchpress",
-      "workoutID": "",
+      "workoutID": "069a",
       "sets": 6
     },
     {
-      "id": "81d0",
-      "movement": "Incline press",
-      "workoutID": "",
-      "sets": 3
-    },
-    {
-      "id": "dc77",
-      "movement": "Tricep ext",
-      "workoutID": "",
-      "sets": 4
-    },
-    {
-      "id": "dbac",
-      "movement": "Test",
-      "workoutID": "",
-      "sets": 3
+      "id": "97a6",
+      "movement": "Pulldowns",
+      "workoutID": "7272",
+      "sets": 6
     }
   ]
 }
