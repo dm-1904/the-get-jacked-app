@@ -14,6 +14,8 @@ export type TWorkoutContex = {
   setWorkoutID: (workoutID: string) => void;
   workoutSubmitted: boolean;
   setWorkoutSubmitted: (workoutSubmitted: boolean) => void;
+  todaysWorkout: string;
+  setTodaysWorkout: (todaysWorkout: string) => void;
   postWorkout: (workout: string, day: string) => Promise<void>;
 };
 
@@ -24,6 +26,7 @@ const CreateWorkoutPro = ({ children }: { children: ReactNode }) => {
   const [workoutID, setWorkoutID] = useState("");
   // const [oneRep, setOneRep] = useState("");
   const [workoutSubmitted, setWorkoutSubmitted] = useState(false);
+  const [todaysWorkout, setTodaysWorkout] = useState("");
 
   const user = useContext(CreateUser);
   if (!user) {
@@ -80,6 +83,8 @@ const CreateWorkoutPro = ({ children }: { children: ReactNode }) => {
         setWorkoutID,
         workoutSubmitted,
         setWorkoutSubmitted,
+        todaysWorkout,
+        setTodaysWorkout,
       }}
     >
       {children}

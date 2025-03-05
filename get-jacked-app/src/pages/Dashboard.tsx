@@ -1,6 +1,7 @@
 import { useCallback, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CreateMovement } from "../context/CreateMovements";
+import { CreateWorkout } from "../context/CreateWorkout";
 
 export const Dashboard = () => {
   const [workoutList, setWorkoutList] = useState<Workout[]>([]);
@@ -25,6 +26,13 @@ export const Dashboard = () => {
 
   const { setEditWorkoutID } = workoutEdit;
 
+  const workoutNow = useContext(CreateWorkout);
+  if (!workoutNow) {
+    throw new Error("workoutNow is null");
+  }
+
+  const { setTodaysWorkout } = workoutNow;
+
   const handleEdit = (workoutId: string) => {
     setEditWorkoutID(workoutId);
     navigate("/edit-workout");
@@ -38,6 +46,11 @@ export const Dashboard = () => {
     localStorage.removeItem("user");
     localStorage.removeItem("workout");
     navigate("/");
+  };
+
+  const handleStartWorkout = (workout: string) => {
+    setTodaysWorkout(workout);
+    navigate("/todays-workout");
   };
 
   const getWorkouts = () => {
@@ -163,7 +176,10 @@ export const Dashboard = () => {
                       >
                         Edit Workout
                       </button>
-                      <button className="workout-list-start-btn">
+                      <button
+                        onClick={() => handleStartWorkout(workout.id)}
+                        className="workout-list-start-btn"
+                      >
                         Start Workout
                       </button>
                     </div>
