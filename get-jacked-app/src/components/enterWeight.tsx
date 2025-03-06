@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 import { CreateWorkout } from "../context/CreateWorkout";
 
-interface WeightDetails {
-  weight: number;
-}
+// interface WeightDetails {
+//   weight: number;
+// }
 
 interface Movement {
   id: string;
@@ -12,8 +12,9 @@ interface Movement {
 }
 
 export const EnterWeight = () => {
-  const [weight, setWeight] = useState<WeightDetails | null>(null);
+  // const [weight, setWeight] = useState<WeightDetails | null>(null);
   const [movements, setMovements] = useState<Movement[]>([]);
+  // const [activeSets, setActiveSets] = useState<{[key: string]: number}>({})
 
   const workout = useContext(CreateWorkout);
   if (!workout) {
@@ -42,6 +43,10 @@ export const EnterWeight = () => {
     };
     fetchTodaysMovement();
   }, [todaysWorkout]);
+
+  // const postWeight = async (movementID: string, setNumber: number, weight: number) => {
+
+  // }
 
   return (
     <div>
