@@ -62,6 +62,7 @@ const CreateWorkoutPro = ({ children }: { children: ReactNode }) => {
       })
       .then((data) => {
         setWorkoutID(data.id);
+        setTodaysWorkout(workout);
         localStorage.setItem(
           "workout",
           JSON.stringify({ ...newWorkout, id: data.id })

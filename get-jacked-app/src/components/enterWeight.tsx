@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 import { CreateWorkout } from "../context/CreateWorkout";
 
-// interface WeightDetails {
-//   weight: number;
-// }
+interface WeightDetails {
+  [key: string]: number | string;
+}
 
 interface Movement {
   id: string;
@@ -12,9 +12,9 @@ interface Movement {
 }
 
 export const EnterWeight = () => {
-  // const [weight, setWeight] = useState<WeightDetails | null>(null);
+  const [weight, setWeight] = useState<WeightDetails | null>(null);
   const [movements, setMovements] = useState<Movement[]>([]);
-  // const [activeSets, setActiveSets] = useState<{[key: string]: number}>({})
+  const [activeSets, setActiveSets] = useState<{ [key: string]: number }>({});
 
   const workout = useContext(CreateWorkout);
   if (!workout) {
@@ -44,29 +44,68 @@ export const EnterWeight = () => {
     fetchTodaysMovement();
   }, [todaysWorkout]);
 
-  // const postWeight = async (movementID: string, setNumber: number, weight: number) => {
+  const postWeight = async (
+    movementID: string,
+    setNumber: number,
+    weight: number
+  ) => {
+    try {
+      const response = await fetch("http://localhost:3000/sets", {
+        method: "POST",
+        headers: {
+          "content-Type": "application/json",
+        },
+        body: JSON.stringify({ movementID, setNumber, weight }),
+      });
+      await response.json();
+    } catch (error) {
+      throw new Error(`postWeight failed: ${error}`);
+    }
+  };
 
-  // }
+  const handleNext = (movement: Movement) => {
+    const currentSet = activeSets[movement.id];
+    const weightValue = weight ? weight[movement.id] : null;
+    if (weightValue && !isNaN(Number(weightValue))) {
+      postWeight(movement.id, currentSet + 1, Number(weightValue));
+      setActiveSets((prev) => ({ ...prev, [movement.id]: currentSet + 1 }));
+      setWeight((prev: WeightDetails | null) => ({
+        ...prev,
+        [movement.id]: "",
+      }));
+    }
+  };
 
   return (
     <div>
-      {/* <input
-        type="text"
-        className="weight-input"
-      /> */}
       <div className="movements-list">
-        {movements.map((movement) => (
-          <>
-            <p className="movement-name">{movement.movement}</p>
-            {Array.from({ length: movement.sets }).map((_, index) => (
-              <input
-                key={index}
-                type="text"
-                className="weight-input"
-              />
-            ))}
-          </>
-        ))}
+        {movements.map((movement) => {
+          const currentSet = activeSets[movement.id] || 0;
+          return (
+            <div key={movement.id}>
+              <p className="movement-name">{movement.movement}</p>
+              {currentSet < movement.sets ? (
+                <div>
+                  <input
+                    type="number"
+                    className="weight-input"
+                    value={weight ? weight[movement.id] || "" : ""}
+                    placeholder={`Set ${currentSet + 1}`}
+                    onChange={(e) =>
+                      setWeight((prev) => ({
+                        ...prev,
+                        [movement.id]: e.target.value,
+                      }))
+                    }
+                  />
+                  <button onClick={() => handleNext(movement)}>Next</button>
+                </div>
+              ) : (
+                <p>All sets completed!</p>
+              )}
+            </div>
+          );
+        })}
       </div>
     </div>
   );

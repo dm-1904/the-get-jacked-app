@@ -65,11 +65,15 @@ export const TodaysWorkout = () => {
         workout.
       </div>
       <div className="movements-list">
-        {movements.map((movement) => (
-          <p key={movement.id}>
-            {movement.movement} - {movement.sets} sets
-          </p>
-        ))}
+        {movements.length > 0 ? (
+          movements.map((movement) => (
+            <p key={movement.id}>
+              {movement.movement} - {movement.sets} sets
+            </p>
+          ))
+        ) : (
+          <p>No movements found for today's workout.</p>
+        )}
       </div>
       <EnterWeight />
       <button onClick={handleFinish}>Finish</button>
