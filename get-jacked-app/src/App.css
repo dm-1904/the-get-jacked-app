@@ -284,3 +284,12 @@ a:hover {
   margin-top: 30px;
   width: 40vw;
 }
+
+/* Enter Weight Component */
+.weight-input {
+  border-radius: 0px;
+  border: 1px solid white;
+  width: 60px;
+  font-size: 30px;
+  padding: 5px;
+}

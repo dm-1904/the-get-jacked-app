@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CreateWorkout } from "../context/CreateWorkout";
+import { EnterWeight } from "../components/enterWeight";
 
 interface Movement {
   id: string;
@@ -11,6 +12,7 @@ interface Movement {
 export const TodaysWorkout = () => {
   const [muscleGroup, setMuscleGroup] = useState<string>("");
   const [movements, setMovements] = useState<Movement[]>([]);
+
   const workout = useContext(CreateWorkout);
   if (!workout) {
     throw new Error("workout is null");
@@ -71,6 +73,7 @@ export const TodaysWorkout = () => {
           </p>
         ))}
       </div>
+      <EnterWeight />
       <button onClick={handleFinish}>Finish</button>
     </div>
   );
