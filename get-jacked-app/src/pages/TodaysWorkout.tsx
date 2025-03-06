@@ -45,8 +45,6 @@ export const TodaysWorkout = () => {
             console.error(
               `HTTP request fetchTodaysWorkout failed: ${err.message}`
             );
-          } else {
-            console.error("HTTP request fetchTodaysWorkout failed");
           }
         }
       }
