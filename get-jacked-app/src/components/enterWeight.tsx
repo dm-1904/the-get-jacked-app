@@ -11,6 +11,13 @@ interface Movement {
   sets: number;
 }
 
+interface SetHistory {
+  movementID: string;
+  setNumber: number;
+  weight: number;
+  date: string;
+}
+
 export const EnterWeight = () => {
   const [weight, setWeight] = useState<WeightDetails | null>(null);
   const [movements, setMovements] = useState<Movement[]>([]);
@@ -18,6 +25,8 @@ export const EnterWeight = () => {
   const [submissions, setSubmissions] = useState<{ [key: string]: number[] }>(
     {}
   );
+
+  const [lastSetHistory, setLastSetHistory] = useState<SetHistory[]>([]);
 
   const workout = useContext(CreateWorkout);
   if (!workout) {
@@ -67,6 +76,32 @@ export const EnterWeight = () => {
     return `${year}-${formattedMonth}-${formattedDay}`;
   };
 
+  useEffect(() => {
+    const lastWorkout = async () => {
+      const today = todaysDate();
+      let lastWorkoutDate: string | undefined;
+      try {
+        const response = await fetch("http://localhost:3000/sets");
+        const responseData = await response.json();
+        for (let i = responseData.length; i >= 0; i--) {
+          if (responseData[i].date < today) {
+            lastWorkoutDate = responseData[i].date;
+          }
+        }
+        const filteredData = responseData.filter(
+          (set: { date: string }) => set.date === lastWorkoutDate
+        );
+        setLastSetHistory(filteredData);
+      } catch (err: unknown) {
+        if (err instanceof Error) {
+          console.error(`HTTP request lastWorkout failed: ${err.message}`);
+        }
+      }
+    };
+
+    lastWorkout();
+  }, []);
+
   const postWeight = async (
     movementID: string,
     setNumber: number,
@@ -114,41 +149,58 @@ export const EnterWeight = () => {
       <div className="movements-list">
         {movements.map((movement) => {
           const currentSet = activeSets[movement.id] || 0;
+          const submittedWeights = submissions[movement.id] || [];
           return (
-            <div key={movement.id}>
+            <div
+              key={movement.id}
+              className="movement"
+            >
               <p className="movement-name">{movement.movement}</p>
-              <ul>
+              <ul className="set-list">
                 {Array.from({ length: movement.sets }).map((_, idx) => (
                   <li key={idx}>
                     <span>Set {idx + 1}: </span>
-                    {submissions[movement.id] &&
-                    submissions[movement.id][idx] !== undefined ? (
-                      <span>{submissions[movement.id][idx]}</span>
-                    ) : idx === currentSet ? (
-                      <div>
-                        <input
-                          type="number"
-                          className="weight-input"
-                          value={weight ? weight[movement.id] || "" : ""}
-                          placeholder={`Set ${idx + 1}`}
-                          onChange={(e) =>
-                            setWeight((prev) => ({
-                              ...prev,
-                              [movement.id]: e.target.value,
-                            }))
-                          }
-                        />
-                        <button onClick={() => handleNext(movement)}>
-                          Submit
-                        </button>
-                      </div>
+                    {submittedWeights[idx] !== undefined ? (
+                      <span>{submittedWeights[idx]}</span>
                     ) : (
                       <span>-</span>
                     )}
                   </li>
                 ))}
               </ul>
-              {currentSet >= movement.sets && <p>All sets completed!</p>}
+              <div className="set-history">
+                {lastSetHistory.map((set, index) => (
+                  <p key={index}>
+                    {set.movementID}: Set {set.setNumber} - {set.weight}
+                  </p>
+                ))}
+              </div>
+
+              {currentSet < movement.sets ? (
+                <div className="set-input">
+                  <input
+                    type="number"
+                    className="weight-input"
+                    value={weight ? weight[movement.id] || "" : ""}
+                    placeholder={`Set ${currentSet + 1}`}
+                    onChange={(e) =>
+                      setWeight((prev) => ({
+                        ...prev,
+                        [movement.id]: e.target.value,
+                      }))
+                    }
+                    autoFocus
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") {
+                        handleNext(movement);
+                      }
+                    }}
+                  />
+                  <button onClick={() => handleNext(movement)}>Submit</button>
+                </div>
+              ) : (
+                <p>All sets completed!</p>
+              )}
             </div>
           );
         })}
