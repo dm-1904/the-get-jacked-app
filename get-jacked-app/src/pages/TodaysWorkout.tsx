@@ -59,11 +59,7 @@ export const TodaysWorkout = () => {
         className="page-title"
         alt=""
       />
-      <h2>{muscleGroup}</h2>
-      <div>
-        This is the Today's Workout page. Here you can see and perform today's
-        workout.
-      </div>
+      <h2 className="todays-workout-header">{muscleGroup}</h2>
       <div className="movements-list">
         {movements.length > 0 ? (
           movements.map((movement) => (
@@ -76,7 +72,12 @@ export const TodaysWorkout = () => {
         )}
       </div>
       <EnterWeight />
-      <button onClick={handleFinish}>Finish</button>
+      <button
+        className="todays-workout-finish-btn"
+        onClick={handleFinish}
+      >
+        Finish
+      </button>
     </div>
   );
 };

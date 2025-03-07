@@ -200,7 +200,12 @@ export const EnterWeight = () => {
                       }
                     }}
                   />
-                  <button onClick={() => handleNext(movement)}>Submit</button>
+                  <button
+                    className="weight-submit-button"
+                    onClick={() => handleNext(movement)}
+                  >
+                    Submit
+                  </button>
                 </div>
               ) : (
                 <p>All sets completed!</p>

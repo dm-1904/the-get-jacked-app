@@ -6,11 +6,6 @@
       "password": "pass"
     },
     {
-      "id": "971c",
-      "username": "test2",
-      "password": "pass"
-    },
-    {
       "id": "0ea7",
       "username": "Test",
       "password": "pass"
@@ -134,13 +129,6 @@
       "setNumber": 6,
       "weight": 235,
       "date": "2025-03-06"
-    },
-    {
-      "id": "10b0",
-      "movementID": "e0c1",
-      "setNumber": 1,
-      "weight": 145,
-      "date": "2025-03-07"
     }
   ]
 }

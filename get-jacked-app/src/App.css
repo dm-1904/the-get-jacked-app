@@ -289,7 +289,6 @@ a:hover {
 .weight-input {
   border-radius: 5pxpx;
   border: 1px solid white;
-  width: 200px;
   font-size: 30px;
   padding: 5px;
 }
@@ -310,4 +309,25 @@ a:hover {
 
 .set-history p {
   margin-right: 20px;
+}
+
+.set-input {
+  display: flex;
+  flex-direction: column;
+  max-width: 200px;
+  margin: 0 auto;
+}
+
+.weight-submit-button {
+  margin-top: 20px;
+}
+
+/* TodaysWorkout Page */
+.todays-workout-header {
+  font-size: 40px;
+  margin-top: 0px;
+}
+
+.todays-workout-finish-btn {
+  margin-top: 80px;
 }
