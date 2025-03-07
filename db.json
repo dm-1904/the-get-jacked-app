@@ -47,46 +47,11 @@
   ],
   "sets": [
     {
-      "id": "0aa7",
+      "id": "a55c",
       "movementID": "e0c1",
       "setNumber": null,
-      "weight": 135
-    },
-    {
-      "id": "38fa",
-      "movementID": "e0c1",
-      "setNumber": null,
-      "weight": 145
-    },
-    {
-      "id": "1a80",
-      "movementID": "e0c1",
-      "setNumber": null,
-      "weight": 155
-    },
-    {
-      "id": "33a0",
-      "movementID": "e0c1",
-      "setNumber": null,
-      "weight": 165
-    },
-    {
-      "id": "a462",
-      "movementID": "e0c1",
-      "setNumber": null,
-      "weight": 185
-    },
-    {
-      "id": "5e65",
-      "movementID": "e0c1",
-      "setNumber": null,
-      "weight": 205
-    },
-    {
-      "id": "9655",
-      "movementID": "e0c1",
-      "setNumber": null,
-      "weight": 225
+      "weight": 135,
+      "date": "2025-03-07"
     }
   ]
 }

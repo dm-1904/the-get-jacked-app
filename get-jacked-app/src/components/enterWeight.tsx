@@ -44,10 +44,23 @@ export const EnterWeight = () => {
     fetchTodaysMovement();
   }, [todaysWorkout]);
 
+  const todaysDate = () => {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = today.getMonth() + 1;
+    const day = today.getDate();
+
+    const formattedMonth = month < 10 ? `0${month}` : month;
+    const formattedDay = day < 10 ? `0${day}` : day;
+
+    return `${year}-${formattedMonth}-${formattedDay}`;
+  };
+
   const postWeight = async (
     movementID: string,
     setNumber: number,
-    weight: number
+    weight: number,
+    date: string
   ) => {
     try {
       const response = await fetch("http://localhost:3000/sets", {
@@ -55,7 +68,7 @@ export const EnterWeight = () => {
         headers: {
           "content-Type": "application/json",
         },
-        body: JSON.stringify({ movementID, setNumber, weight }),
+        body: JSON.stringify({ movementID, setNumber, weight, date }),
       });
       await response.json();
     } catch (error) {
@@ -67,7 +80,12 @@ export const EnterWeight = () => {
     const currentSet = activeSets[movement.id];
     const weightValue = weight ? weight[movement.id] : null;
     if (weightValue && !isNaN(Number(weightValue))) {
-      postWeight(movement.id, currentSet + 1, Number(weightValue));
+      postWeight(
+        movement.id,
+        currentSet + 1,
+        Number(weightValue),
+        todaysDate()
+      );
       setActiveSets((prev) => ({ ...prev, [movement.id]: currentSet + 1 }));
       setWeight((prev: WeightDetails | null) => ({
         ...prev,
