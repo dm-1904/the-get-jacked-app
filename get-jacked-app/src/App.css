@@ -287,7 +287,7 @@ a:hover {
 
 /* Enter Weight Component */
 .weight-input {
-  border-radius: 0px;
+  border-radius: 5pxpx;
   border: 1px solid white;
   width: 200px;
   font-size: 30px;
@@ -300,5 +300,14 @@ a:hover {
 }
 
 .set-list li {
+  margin-right: 20px;
+}
+
+.set-history {
+  display: flex;
+  padding-left: 40px;
+}
+
+.set-history p {
   margin-right: 20px;
 }

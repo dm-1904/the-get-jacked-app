@@ -83,9 +83,10 @@ export const EnterWeight = () => {
       try {
         const response = await fetch("http://localhost:3000/sets");
         const responseData = await response.json();
-        for (let i = responseData.length; i >= 0; i--) {
+        for (let i = responseData.length - 1; i >= 0; i--) {
           if (responseData[i].date < today) {
             lastWorkoutDate = responseData[i].date;
+            break;
           }
         }
         const filteredData = responseData.filter(
@@ -168,12 +169,15 @@ export const EnterWeight = () => {
                   </li>
                 ))}
               </ul>
+              <span className="your-last-workout">Your Last Workout</span>
               <div className="set-history">
-                {lastSetHistory.map((set, index) => (
-                  <p key={index}>
-                    {set.movementID}: Set {set.setNumber} - {set.weight}
-                  </p>
-                ))}
+                {lastSetHistory
+                  .filter((set) => set.movementID === movement.id)
+                  .map((set, index) => (
+                    <p key={index}>
+                      Set {set.setNumber} - {set.weight}
+                    </p>
+                  ))}
               </div>
 
               {currentSet < movement.sets ? (

@@ -9,6 +9,11 @@
       "id": "971c",
       "username": "test2",
       "password": "pass"
+    },
+    {
+      "id": "0ea7",
+      "username": "Test",
+      "password": "pass"
     }
   ],
   "workouts": [
@@ -46,6 +51,48 @@
     }
   ],
   "sets": [
+    {
+      "id": "706c",
+      "movementID": "e0c1",
+      "setNumber": 1,
+      "weight": 95,
+      "date": "2025-03-01"
+    },
+    {
+      "id": "7ae5",
+      "movementID": "e0c1",
+      "setNumber": 2,
+      "weight": 96,
+      "date": "2025-03-01"
+    },
+    {
+      "id": "9229",
+      "movementID": "e0c1",
+      "setNumber": 3,
+      "weight": 23,
+      "date": "2025-03-01"
+    },
+    {
+      "id": "742e",
+      "movementID": "e0c1",
+      "setNumber": 4,
+      "weight": 34,
+      "date": "2025-03-01"
+    },
+    {
+      "id": "50c9",
+      "movementID": "e0c1",
+      "setNumber": 5,
+      "weight": 45,
+      "date": "2025-03-01"
+    },
+    {
+      "id": "5863",
+      "movementID": "e0c1",
+      "setNumber": 6,
+      "weight": 56,
+      "date": "2025-03-01"
+    },
     {
       "id": "0d5e",
       "movementID": "e0c1",
@@ -87,6 +134,13 @@
       "setNumber": 6,
       "weight": 235,
       "date": "2025-03-06"
+    },
+    {
+      "id": "10b0",
+      "movementID": "e0c1",
+      "setNumber": 1,
+      "weight": 145,
+      "date": "2025-03-07"
     }
   ]
 }
