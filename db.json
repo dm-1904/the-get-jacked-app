@@ -47,10 +47,45 @@
   ],
   "sets": [
     {
-      "id": "a55c",
+      "id": "4e50",
       "movementID": "e0c1",
-      "setNumber": null,
+      "setNumber": 1,
       "weight": 135,
+      "date": "2025-03-07"
+    },
+    {
+      "id": "5e06",
+      "movementID": "e0c1",
+      "setNumber": 2,
+      "weight": 155,
+      "date": "2025-03-07"
+    },
+    {
+      "id": "0c83",
+      "movementID": "e0c1",
+      "setNumber": 3,
+      "weight": 185,
+      "date": "2025-03-07"
+    },
+    {
+      "id": "c000",
+      "movementID": "e0c1",
+      "setNumber": 4,
+      "weight": 205,
+      "date": "2025-03-07"
+    },
+    {
+      "id": "3bc6",
+      "movementID": "e0c1",
+      "setNumber": 5,
+      "weight": 225,
+      "date": "2025-03-07"
+    },
+    {
+      "id": "4961",
+      "movementID": "e0c1",
+      "setNumber": 6,
+      "weight": 225,
       "date": "2025-03-07"
     }
   ]
