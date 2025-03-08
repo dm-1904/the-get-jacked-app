@@ -18,7 +18,11 @@ interface SetHistory {
   date: string;
 }
 
-export const EnterWeight = () => {
+export const EnterWeight = ({
+  onAllSetsCompleted,
+}: {
+  onAllSetsCompleted: (completed: boolean) => void;
+}) => {
   const [weight, setWeight] = useState<WeightDetails | null>(null);
   const [movements, setMovements] = useState<Movement[]>([]);
   const [activeSets, setActiveSets] = useState<{ [key: string]: number }>({});
@@ -144,6 +148,13 @@ export const EnterWeight = () => {
       }));
     }
   };
+
+  useEffect(() => {
+    const allSetsCompleted = movements.every(
+      (movement) => activeSets[movement.id] >= movement.sets
+    );
+    onAllSetsCompleted(allSetsCompleted);
+  }, [activeSets, movements, onAllSetsCompleted]);
 
   return (
     <div>

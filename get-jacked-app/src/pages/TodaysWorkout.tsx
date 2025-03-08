@@ -12,6 +12,7 @@ interface Movement {
 export const TodaysWorkout = () => {
   const [muscleGroup, setMuscleGroup] = useState<string>("");
   const [movements, setMovements] = useState<Movement[]>([]);
+  const [allSetsCompleted, setAllSetsCompleted] = useState(false);
 
   const workout = useContext(CreateWorkout);
   if (!workout) {
@@ -71,10 +72,11 @@ export const TodaysWorkout = () => {
           <p>No movements found for today's workout.</p>
         )}
       </div>
-      <EnterWeight />
+      <EnterWeight onAllSetsCompleted={setAllSetsCompleted} />
       <button
         className="todays-workout-finish-btn"
         onClick={handleFinish}
+        disabled={!allSetsCompleted}
       >
         Finish
       </button>
