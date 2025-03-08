@@ -129,6 +129,83 @@
       "setNumber": 6,
       "weight": 235,
       "date": "2025-03-06"
+    },
+    {
+      "id": "5a40",
+      "movementID": "e0c1",
+      "setNumber": 1,
+      "weight": 140,
+      "date": "2025-03-07"
+    },
+    {
+      "id": "c540",
+      "movementID": "e0c1",
+      "setNumber": 2,
+      "weight": 160,
+      "date": "2025-03-07"
+    },
+    {
+      "id": "e1c4",
+      "movementID": "e0c1",
+      "setNumber": 3,
+      "weight": 190,
+      "date": "2025-03-07"
+    },
+    {
+      "id": "76bb",
+      "movementID": "e0c1",
+      "setNumber": 4,
+      "weight": 210,
+      "date": "2025-03-07"
+    },
+    {
+      "id": "a2ed",
+      "movementID": "e0c1",
+      "setNumber": 5,
+      "weight": 230,
+      "date": "2025-03-07"
+    },
+    {
+      "id": "4fd1",
+      "movementID": "e0c1",
+      "setNumber": 6,
+      "weight": 240,
+      "date": "2025-03-07"
+    },
+    {
+      "id": "c2ba",
+      "movementID": "25d7",
+      "setNumber": 1,
+      "weight": 95,
+      "date": "2025-03-07"
+    },
+    {
+      "id": "a943",
+      "movementID": "25d7",
+      "setNumber": 2,
+      "weight": 95,
+      "date": "2025-03-07"
+    },
+    {
+      "id": "a9c7",
+      "movementID": "25d7",
+      "setNumber": 3,
+      "weight": 135,
+      "date": "2025-03-07"
+    },
+    {
+      "id": "640d",
+      "movementID": "25d7",
+      "setNumber": 4,
+      "weight": 135,
+      "date": "2025-03-07"
+    },
+    {
+      "id": "a7ee",
+      "movementID": "25d7",
+      "setNumber": 5,
+      "weight": 155,
+      "date": "2025-03-07"
     }
   ]
 }

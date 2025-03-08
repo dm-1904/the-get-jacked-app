@@ -24,7 +24,6 @@ const CreateWorkout = createContext<TWorkoutContex | undefined>(undefined);
 const CreateWorkoutPro = ({ children }: { children: ReactNode }) => {
   const [workout, setWorkout] = useState("");
   const [workoutID, setWorkoutID] = useState("");
-  // const [oneRep, setOneRep] = useState("");
   const [workoutSubmitted, setWorkoutSubmitted] = useState(false);
   const [todaysWorkout, setTodaysWorkout] = useState("");
 

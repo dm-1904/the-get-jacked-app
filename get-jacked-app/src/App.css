@@ -331,3 +331,31 @@ a:hover {
 .todays-workout-finish-btn {
   margin-top: 80px;
 }
+
+/* Workout Summary Page */
+.summary-workout-name {
+  margin-top: 0px;
+  font-size: 40px;
+}
+
+.summary-date,
+.summary-movement {
+  text-align: left;
+}
+
+.summary-movement {
+  color: red;
+}
+
+.summary-set-history {
+  display: flex;
+  list-style: none;
+}
+
+.summary-set {
+  margin-right: 10px;
+}
+
+.summary-weight {
+  text-align: right;
+}
