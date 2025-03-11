@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState } from "react";
 import { toast } from "react-hot-toast";
 import { CreateUser } from "../context/CreateUser";
 import { Link, useNavigate } from "react-router-dom";
@@ -15,7 +15,7 @@ export const Login = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
     throw new Error("Login auth error");
   }
 
-  const { setUsername, setPassword, setUserID, userID } = auth;
+  const { setUsername, setPassword, setUserID } = auth;
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -25,7 +25,6 @@ export const Login = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
       (u: { username: string; password: string }) =>
         u.username === inputUsername && u.password === inputPassword
     );
-    // console.log(user);
 
     if (user) {
       setUsername(user.username);
@@ -41,10 +40,6 @@ export const Login = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
     setInputUsername("");
     setInputPassword("");
   };
-
-  useEffect(() => {
-    console.log("Login userID:", userID);
-  }, [userID]);
 
   return (
     <div className="login-box">
