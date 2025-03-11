@@ -149,6 +149,19 @@ export const EnterWeight = ({
     }
   };
 
+  const handleWeightChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    movementID: string
+  ) => {
+    const value = Number(e.target.value);
+    if (value >= 0) {
+      setWeight((prev) => ({
+        ...prev,
+        [movementID]: value,
+      }));
+    }
+  };
+
   useEffect(() => {
     const allSetsCompleted = movements.every(
       (movement) => activeSets[movement.id] >= movement.sets
@@ -162,6 +175,9 @@ export const EnterWeight = ({
         {movements.map((movement) => {
           const currentSet = activeSets[movement.id] || 0;
           const submittedWeights = submissions[movement.id] || [];
+          const movementHistory = lastSetHistory.filter(
+            (set) => set.movementID === movement.id
+          );
           return (
             <div
               key={movement.id}
@@ -182,13 +198,15 @@ export const EnterWeight = ({
               </ul>
               <span className="your-last-workout">Your Last Workout</span>
               <div className="set-history">
-                {lastSetHistory
-                  .filter((set) => set.movementID === movement.id)
-                  .map((set, index) => (
+                {movementHistory.length === 0 ? (
+                  <p>No Workout History</p>
+                ) : (
+                  movementHistory.map((set, index) => (
                     <p key={index}>
                       Set {set.setNumber} - {set.weight}
                     </p>
-                  ))}
+                  ))
+                )}
               </div>
 
               {currentSet < movement.sets ? (
@@ -198,12 +216,7 @@ export const EnterWeight = ({
                     className="weight-input"
                     value={weight ? weight[movement.id] || "" : ""}
                     placeholder={`Set ${currentSet + 1}`}
-                    onChange={(e) =>
-                      setWeight((prev) => ({
-                        ...prev,
-                        [movement.id]: e.target.value,
-                      }))
-                    }
+                    onChange={(e) => handleWeightChange(e, movement.id)}
                     autoFocus
                     onKeyDown={(e) => {
                       if (e.key === "Enter") {

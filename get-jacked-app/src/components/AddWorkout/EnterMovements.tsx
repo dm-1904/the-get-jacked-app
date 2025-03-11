@@ -9,7 +9,7 @@ interface EnterMovementProps {
 export const EnterMovement = ({ workoutID }: EnterMovementProps) => {
   const newMovement = useContext(CreateMovement);
   const [inputMovement, setInputMovement] = useState("");
-  const [inputSets, setInputSets] = useState(0);
+  const [inputSets, setInputSets] = useState<number | string>(0);
   const [movements, setMovements] = useState([]);
   const movementInputRef = useRef<HTMLInputElement>(null);
 
@@ -28,14 +28,14 @@ export const EnterMovement = ({ workoutID }: EnterMovementProps) => {
       toast.error("Please enter a movement");
       return;
     }
-    if (inputSets < 1) {
+    if (Number(inputSets) < 1) {
       toast.error("Sets must be more than 0");
       return;
     }
     const formattedMovement = formattedInput(inputMovement);
     setMovement(formattedMovement);
-    setSets(inputSets);
-    await postMovementAndSets(formattedMovement, inputSets, workoutID);
+    setSets(Number(inputSets));
+    await postMovementAndSets(formattedMovement, Number(inputSets), workoutID);
     setInputMovement("");
     setInputSets(0);
     fetchMovements();
@@ -58,6 +58,13 @@ export const EnterMovement = ({ workoutID }: EnterMovementProps) => {
     fetchMovements();
   }, [fetchMovements]);
 
+  const handleSetsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = Number(e.target.value);
+    if (value >= 0) {
+      setInputSets(value);
+    }
+  };
+
   return (
     <div className="movement-box">
       <form
@@ -65,19 +72,33 @@ export const EnterMovement = ({ workoutID }: EnterMovementProps) => {
         className="enter-workout-form"
         onSubmit={handleNewMovement}
       >
+        <label
+          htmlFor="enter-movement"
+          className="enter-workout-label"
+        >
+          Enter Movement
+        </label>
         <input
           type="text"
           className="enter-workout enter-movement"
-          placeholder="Enter Movement"
+          placeholder="ex. Benchpress"
           value={inputMovement}
           onChange={(e) => setInputMovement(e.target.value)}
           ref={movementInputRef}
         />
+        <label
+          htmlFor="enter-sets"
+          className="enter-workout-label"
+        >
+          Enter Sets
+        </label>
         <input
           type="number"
           className="enter-workout enter-sets"
+          placeholder="Enter Sets"
           value={inputSets}
-          onChange={(e) => setInputSets(Number(e.target.value))}
+          onChange={handleSetsChange}
+          onFocus={() => setInputSets("")}
         />
         <button className="add-workout-button schedule-btn">
           Add Movement

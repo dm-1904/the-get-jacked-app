@@ -29,6 +29,12 @@
       "workout": "Legs",
       "userID": "1dcd",
       "day": "Sunday"
+    },
+    {
+      "id": "13a3",
+      "workout": "Test",
+      "userID": "1dcd",
+      "day": "Friday"
     }
   ],
   "movements": [
@@ -49,6 +55,18 @@
       "movement": "Incline press",
       "workoutID": "069a",
       "sets": 5
+    },
+    {
+      "id": "ec58",
+      "movement": "Test5",
+      "workoutID": "13a3",
+      "sets": 3
+    },
+    {
+      "id": "503e",
+      "movement": "Bench",
+      "workoutID": "13a3",
+      "sets": 3
     }
   ],
   "sets": [
