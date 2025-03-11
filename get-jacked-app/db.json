@@ -23,6 +23,12 @@
       "workout": "Back",
       "userID": "1dcd",
       "day": "Tuesday"
+    },
+    {
+      "id": "dd7c",
+      "workout": "Legs",
+      "userID": "1dcd",
+      "day": "Sunday"
     }
   ],
   "movements": [

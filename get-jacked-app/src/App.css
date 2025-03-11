@@ -6,7 +6,6 @@
 }
 
 input {
-  /* width: 80%; */
   padding: 9px 19px;
   border-radius: 8px;
 }
@@ -14,14 +13,14 @@ input {
 input body {
   background-color: black;
   color: white;
-  max-width: 425px;
+  max-width: 430px;
 }
 
 .main-img {
-  max-width: 425px;
+  max-width: 100%;
   position: relative;
   left: 0;
-  padding-bottom: 50px;
+  padding-bottom: 20px;
 }
 
 .login-box,
@@ -51,7 +50,8 @@ input {
 .login-form,
 .register-form {
   margin: 0 auto;
-  width: 360px;
+  width: 100%;
+  max-width: 360px;
   height: 200px;
   display: flex;
   flex-direction: column;
@@ -85,15 +85,15 @@ a:hover {
 }
 
 #root {
-  max-width: 425px;
+  max-width: 430px;
   margin: 0 auto;
   text-align: center;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* Change to space-between */
+  justify-content: space-between;
   align-items: center;
-  padding-top: 50px;
+  padding-top: 20px;
 }
 
 .back-button {
@@ -120,6 +120,7 @@ a:hover {
   border: 1px solid white;
   border-radius: 8px;
   margin: 5px;
+  margin-bottom: 20px;
   font-size: 20px;
   cursor: pointer;
   padding: 10px;
@@ -127,19 +128,23 @@ a:hover {
 
 .movements-list {
   text-align: left;
+  font-size: 18px;
+}
+
+.movements-list p {
   margin-left: 20px;
-  font-size: 20px;
 }
 
 .workout-list-btn-box {
   display: flex;
-  justify-content: center;
-  justify-content: space-around;
-  margin-bottom: 50px;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 .workout-list-btn-box button {
-  width: 250px;
+  width: 80%;
+  margin-bottom: 20px;
 }
 
 .schedule-buttons {
@@ -148,12 +153,9 @@ a:hover {
   margin-top: 30px;
   margin: 0 auto;
   bottom: 30px;
-  width: 400px;
+  width: 300px;
   left: 50%;
   transform: translateX(-50%);
-
-  /* margin-bottom: 20px;
-  align-self: flex-end;  */
 }
 
 .schedule-btn {
@@ -171,6 +173,12 @@ a:hover {
   border-radius: 8px;
   color: white;
   margin-bottom: 20px !important;
+}
+
+.enter-workout-label {
+  text-align: left;
+  display: block;
+  margin-left: 10px;
 }
 
 .rep-box {
@@ -223,6 +231,7 @@ a:hover {
 .day-input:checked + .day-label {
   background-color: black;
   color: white;
+  border: 1px solid white;
 }
 
 .enter-movement,
@@ -259,19 +268,19 @@ a:hover {
 
 .edit-workout-workout-header {
   text-align: left;
-  margin-left: 50px;
+  margin-left: 20px;
   font-family: "Courier New", Courier, monospace;
-  font-size: 40px;
+  font-size: 30px;
 }
 
 .edit-workout-movements {
   font-family: "Courier New", Courier, monospace;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .movement-map {
   display: flex;
-  margin: 0 50px;
+  margin: 0 20px;
   justify-content: space-between;
 }
 
@@ -283,15 +292,15 @@ a:hover {
 .delete-add-buttons button {
   display: block;
   margin: 0 auto;
-  margin-top: 30px;
+  margin-top: 20px;
   width: 40vw;
 }
 
 /* Enter Weight Component */
 .weight-input {
-  border-radius: 5pxpx;
+  border-radius: 5px;
   border: 1px solid white;
-  font-size: 30px;
+  font-size: 20px;
   padding: 5px;
 }
 
@@ -301,16 +310,16 @@ a:hover {
 }
 
 .set-list li {
-  margin-right: 20px;
+  margin-right: 10px;
 }
 
 .set-history {
   display: flex;
-  padding-left: 40px;
+  padding-left: 20px;
 }
 
 .set-history p {
-  margin-right: 20px;
+  margin-right: 10px;
 }
 
 .set-input {
@@ -326,18 +335,18 @@ a:hover {
 
 /* TodaysWorkout Page */
 .todays-workout-header {
-  font-size: 40px;
+  font-size: 30px;
   margin-top: 0px;
 }
 
 .todays-workout-finish-btn {
-  margin-top: 80px;
+  margin-top: 40px;
 }
 
 /* Workout Summary Page */
 .summary-workout-name {
   margin-top: 0px;
-  font-size: 40px;
+  font-size: 30px;
 }
 
 .summary-date,

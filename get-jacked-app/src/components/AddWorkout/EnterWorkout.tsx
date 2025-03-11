@@ -40,6 +40,12 @@ export const EnterWorkout = ({ onSubmit }: { onSubmit: () => void }) => {
       className="enter-workout-form"
       onSubmit={handleNewWorkout}
     >
+      <label
+        className="enter-workout-label"
+        htmlFor="enter-workout"
+      >
+        Muscle Group
+      </label>
       <input
         type="text"
         className="enter-workout"
