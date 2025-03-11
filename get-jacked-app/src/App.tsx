@@ -7,7 +7,6 @@ import { EditWorkout } from "./pages/EditWorkout";
 import { AddWorkout } from "./pages/AddWorkout";
 import { TodaysWorkout } from "./pages/TodaysWorkout";
 import { WorkoutSummary } from "./pages/WorkoutSummary";
-import { WorkoutHistory } from "./pages/WorkoutHistory";
 import { BrowserRouter } from "react-router-dom";
 import { CreateUserPro } from "./context/CreateUser";
 
@@ -53,10 +52,6 @@ function App() {
           <Route
             path="/workout-summary"
             element={<WorkoutSummary />}
-          />
-          <Route
-            path="/history"
-            element={<WorkoutHistory />}
           />
         </Routes>
       </CreateUserPro>

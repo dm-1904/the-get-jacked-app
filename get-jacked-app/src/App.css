@@ -120,7 +120,9 @@ a:hover {
   border: 1px solid white;
   border-radius: 8px;
   margin: 5px;
-  font-size: 40px;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 10px;
 }
 
 .movements-list {
