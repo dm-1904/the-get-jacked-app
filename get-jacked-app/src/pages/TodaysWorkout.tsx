@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { CreateWorkout } from "../context/CreateWorkout";
 import { EnterWeight } from "../components/enterWeight";
 
+const apiKey = import.meta.env.VITE_API_KEY;
+
 interface Movement {
   id: string;
   movement: string;
@@ -31,13 +33,11 @@ export const TodaysWorkout = () => {
     const fetchTodaysWorkout = async () => {
       if (todaysWorkout) {
         try {
-          const response = await fetch(
-            `http://localhost:3000/workouts/${todaysWorkout}`
-          );
+          const response = await fetch(`${apiKey}workouts/${todaysWorkout}`);
           const workoutResponse = await response.json();
           setMuscleGroup(workoutResponse.workout);
           const moveResponse = await fetch(
-            `http://localhost:3000/movements?workoutID=${todaysWorkout}`
+            `${apiKey}movements?workoutID=${todaysWorkout}`
           );
           const moveResponseData = await moveResponse.json();
           setMovements(moveResponseData);

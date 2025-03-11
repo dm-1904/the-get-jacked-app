@@ -2,6 +2,8 @@ import { useContext, useState, useEffect, useCallback, useRef } from "react";
 import { CreateMovement } from "../../context/CreateMovements";
 import toast from "react-hot-toast";
 
+const apiKey = import.meta.env.VITE_API_KEY;
+
 interface EnterMovementProps {
   workoutID: string;
 }
@@ -43,7 +45,7 @@ export const EnterMovement = ({ workoutID }: EnterMovementProps) => {
   };
 
   const addedMovements = () => {
-    return fetch("http://localhost:3000/movements").then((res) => res.json());
+    return fetch(`${apiKey}movements`).then((res) => res.json());
   };
 
   const fetchMovements = useCallback(async () => {

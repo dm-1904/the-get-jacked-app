@@ -4,6 +4,8 @@ import { EnterWorkout } from "../components/AddWorkout/EnterWorkout";
 import { EnterMovement } from "../components/AddWorkout/EnterMovements";
 import { CreateWorkout } from "../context/CreateWorkout";
 
+const apiKey = import.meta.env.VITE_API_KEY;
+
 export const AddWorkout = () => {
   const navigate = useNavigate();
   const [workoutSubmitted, setWorkoutSubmitted] = useState(false);
@@ -21,15 +23,15 @@ export const AddWorkout = () => {
     if (storedWorkout) {
       const { id: workoutID } = JSON.parse(storedWorkout);
       if (workoutID) {
-        await fetch(`http://localhost:3000/workouts/${workoutID}`, {
+        await fetch(`${apiKey}workouts/${workoutID}`, {
           method: "DELETE",
         });
         const movementsResponse = await fetch(
-          `http://localhost:3000/movements?workoutID=${workoutID}`
+          `${apiKey}movements?workoutID=${workoutID}`
         );
         const movements = await movementsResponse.json();
         for (const movement of movements) {
-          await fetch(`http://localhost:3000/movements/${movement.id}`, {
+          await fetch(`${apiKey}movements/${movement.id}`, {
             method: "DELETE",
           });
         }

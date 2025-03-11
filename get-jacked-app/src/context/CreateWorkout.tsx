@@ -7,6 +7,8 @@ import {
 } from "react";
 import { CreateUser } from "./CreateUser";
 
+const apiKey = import.meta.env.VITE_API_KEY;
+
 export type TWorkoutContex = {
   workout: string;
   setWorkout: (workout: string) => void;
@@ -46,7 +48,7 @@ const CreateWorkoutPro = ({ children }: { children: ReactNode }) => {
     const { id: linkedID } = storedUser ? JSON.parse(storedUser) : { id: null };
     // console.log("post", linkedID);
     const newWorkout = { workout, userID: linkedID, day };
-    return fetch("http://localhost:3000/workouts", {
+    return fetch(`${apiKey}workouts`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

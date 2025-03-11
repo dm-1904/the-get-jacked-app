@@ -2,6 +2,8 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CreateWorkout } from "../context/CreateWorkout";
 
+const apiKey = import.meta.env.VITE_API_KEY;
+
 interface Movement {
   id: string;
   movement: string;
@@ -38,18 +40,18 @@ export const WorkoutSummary = () => {
       if (todaysWorkout) {
         try {
           const workoutResponse = await fetch(
-            `http://localhost:3000/workouts/${todaysWorkout}`
+            `${apiKey}workouts/${todaysWorkout}`
           );
           const workoutData = await workoutResponse.json();
           setWorkoutName(workoutData.workout);
 
           const movementsResponse = await fetch(
-            `http://localhost:3000/movements?workoutID=${todaysWorkout}`
+            `${apiKey}movements?workoutID=${todaysWorkout}`
           );
           const movementsData = await movementsResponse.json();
           setMovements(movementsData);
 
-          const setsResponse = await fetch("http://localhost:3000/sets");
+          const setsResponse = await fetch(`${apiKey}sets`);
           const setsData = await setsResponse.json();
           const filteredSets = setsData.filter((set: SetHistory) =>
             movementsData.some((m: Movement) => m.id === set.movementID)

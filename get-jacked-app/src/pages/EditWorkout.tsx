@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { CreateMovement } from "../context/CreateMovements";
 import { EnterMovement } from "../components/AddWorkout/EnterMovements";
 
+const apiKey = import.meta.env.VITE_API_KEY;
+
 interface WorkoutDetails {
   workout: string;
 }
@@ -33,12 +35,12 @@ export const EditWorkout = () => {
       if (editWorkoutID) {
         try {
           const workoutNameResponse = await fetch(
-            `http://localhost:3000/workouts/${editWorkoutID}`
+            `${apiKey}workouts/${editWorkoutID}`
           );
           const nameData = await workoutNameResponse.json();
           setWorkoutDetails(nameData);
           const movementDetailsResponse = await fetch(
-            `http://localhost:3000/movements?workoutID=${editWorkoutID}`
+            `${apiKey}movements?workoutID=${editWorkoutID}`
           );
           const movementData = await movementDetailsResponse.json();
           setMovementDetails(movementData);
@@ -60,7 +62,7 @@ export const EditWorkout = () => {
   };
 
   const handleDelete = (endpoint: string, id: string) => {
-    return fetch(`http://localhost:3000/${endpoint}/${id}`, {
+    return fetch(`${apiKey}${endpoint}/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -79,17 +81,14 @@ export const EditWorkout = () => {
     try {
       await Promise.all(
         movementDetails.map((movement) =>
-          fetch(`http://localhost:3000/movements/${movement.id}`, {
+          fetch(`${apiKey}movements/${movement.id}`, {
             method: "DELETE",
           })
         )
       );
-      await fetch(
-        `http://localhost:3000/workouts/${workoutEdit.editWorkoutID}`,
-        {
-          method: "DELETE",
-        }
-      );
+      await fetch(`${apiKey}workouts/${workoutEdit.editWorkoutID}`, {
+        method: "DELETE",
+      });
       navigate("/dashboard");
     } catch (err) {
       console.error("Error deleting workout and movements:", err);

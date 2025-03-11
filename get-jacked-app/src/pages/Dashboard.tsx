@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { CreateMovement } from "../context/CreateMovements";
 import { CreateWorkout } from "../context/CreateWorkout";
 
+const apiKey = import.meta.env.VITE_API_KEY;
+
 export const Dashboard = () => {
   const [workoutList, setWorkoutList] = useState<Workout[]>([]);
   const [expandedWorkoutId, setExpandedWorkoutId] = useState<string | null>(
@@ -54,7 +56,7 @@ export const Dashboard = () => {
   };
 
   const getWorkouts = () => {
-    return fetch("http://localhost:3000/workouts")
+    return fetch(`${apiKey}workouts`)
       .then((res) => res.json())
       .catch((err: Error) => {
         throw new Error(`HTTP request getWorkouts failed ${err.message}`);
@@ -115,7 +117,7 @@ export const Dashboard = () => {
   };
 
   const getMovements = () => {
-    return fetch("http://localhost:3000/movements")
+    return fetch(`${apiKey}movements`)
       .then((res) => res.json())
       .catch((err: Error) => {
         throw new Error(`HTTP request getMovements failed ${err.message}`);

@@ -2,6 +2,8 @@ import { createContext } from "react";
 import { ReactNode, useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 
+const apiKey = import.meta.env.VITE_API_KEY;
+
 export type TUserContext = {
   username: string;
   setUsername: (username: string) => void;
@@ -20,7 +22,7 @@ const CreateUserPro = ({ children }: { children: ReactNode }) => {
   const [userID, setUserID] = useState("");
 
   const postUser = async (username: string, password: string) => {
-    const response = await fetch("http://localhost:3000/app-users");
+    const response = await fetch(`${apiKey}app-users`);
     const users = await response.json();
     const existingUser = users.find(
       (user: { username: string }) => user.username === username
@@ -32,7 +34,7 @@ const CreateUserPro = ({ children }: { children: ReactNode }) => {
     }
 
     const user = { username, password };
-    return fetch("http://localhost:3000/app-users", {
+    return fetch(`${apiKey}app-users`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

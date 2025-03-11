@@ -3,6 +3,8 @@ import { toast } from "react-hot-toast";
 import { CreateUser } from "../context/CreateUser";
 import { Link, useNavigate } from "react-router-dom";
 
+const apiKey = import.meta.env.VITE_API_KEY;
+
 export const Login = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
   const auth = useContext(CreateUser);
   const navigate = useNavigate();
@@ -17,7 +19,7 @@ export const Login = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:3000/app-users");
+    const response = await fetch(`${apiKey}app-users`);
     const users = await response.json();
     const user = users.find(
       (u: { username: string; password: string }) =>
