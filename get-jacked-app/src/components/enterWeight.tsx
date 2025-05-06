@@ -13,7 +13,7 @@ interface Movement {
   sets: number;
 }
 
-interface SetHistory {
+export interface SetHistory {
   movementID: string;
   setNumber: number;
   weight: number;
