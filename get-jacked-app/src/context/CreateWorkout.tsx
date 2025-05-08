@@ -7,7 +7,7 @@ import {
 } from "react";
 import { CreateUser } from "./CreateUser";
 
-const apiKey = import.meta.env.VITE_API_KEY;
+// const apiKey = import.meta.env.VITE_API_KEY;
 
 export type TWorkoutContex = {
   workout: string;
@@ -43,37 +43,39 @@ const CreateWorkoutPro = ({ children }: { children: ReactNode }) => {
     }
   }, [setUserID]);
 
-  const postWorkout = async (workout: string, day: string) => {
-    const storedUser = localStorage.getItem("user");
-    const { id: linkedID } = storedUser ? JSON.parse(storedUser) : { id: null };
-    // console.log("post", linkedID);
-    const newWorkout = { workout, userID: linkedID, day };
-    return fetch(`${apiKey}workouts`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newWorkout),
-    })
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error(`HTTP POST failed with status ${res.status}`);
-        }
-        return res.json();
-      })
-      .then((data) => {
-        setWorkoutID(data.id);
-        setTodaysWorkout(workout);
-        localStorage.setItem(
-          "workout",
-          JSON.stringify({ ...newWorkout, id: data.id })
-        );
-        return data;
-      })
-      .catch((error: Error) => {
-        throw new Error(`Posting to 'workouts' failed: ${error.message}`);
-      });
-  };
+  const postWorkout = async (workout: string, day: string) => {};
+
+  // const postWorkout = async (workout: string, day: string) => {
+  //   const storedUser = localStorage.getItem("user");
+  //   const { id: linkedID } = storedUser ? JSON.parse(storedUser) : { id: null };
+  //   // console.log("post", linkedID);
+  //   const newWorkout = { workout, userID: linkedID, day };
+  //   return fetch(`${apiKey}workouts`, {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(newWorkout),
+  //   })
+  //     .then((res) => {
+  //       if (!res.ok) {
+  //         throw new Error(`HTTP POST failed with status ${res.status}`);
+  //       }
+  //       return res.json();
+  //     })
+  //     .then((data) => {
+  //       setWorkoutID(data.id);
+  //       setTodaysWorkout(workout);
+  //       localStorage.setItem(
+  //         "workout",
+  //         JSON.stringify({ ...newWorkout, id: data.id })
+  //       );
+  //       return data;
+  //     })
+  //     .catch((error: Error) => {
+  //       throw new Error(`Posting to 'workouts' failed: ${error.message}`);
+  //     });
+  // };
 
   return (
     <CreateWorkout.Provider

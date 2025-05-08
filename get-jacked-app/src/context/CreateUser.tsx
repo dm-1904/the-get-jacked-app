@@ -1,8 +1,7 @@
-import { createContext } from "react";
+import { createContext, useCallback } from "react";
 import { ReactNode, useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
-
-const apiKey = import.meta.env.VITE_API_KEY;
+import { createUser, UserRow } from "../api";
 
 export type TUserContext = {
   username: string;
@@ -21,41 +20,35 @@ const CreateUserPro = ({ children }: { children: ReactNode }) => {
   const [password, setPassword] = useState("");
   const [userID, setUserID] = useState("");
 
-  const postUser = async (username: string, password: string) => {
-    const response = await fetch(`${apiKey}app-users`);
-    const users = await response.json();
-    const existingUser = users.find(
-      (user: { username: string }) => user.username === username
-    );
+  const postUser = useCallback(async (username: string, password: string) => {
+    try {
+      const newUser: UserRow = await createUser(username, password);
+      setUserID(newUser.id);
+      setUsername(username);
+      setPassword(password);
 
-    if (existingUser) {
-      toast.error("Username already exists");
-      throw new Error("Username already exists");
+      localStorage.setItem(
+        "user",
+        JSON.stringify({
+          id: newUser.id,
+          username: username,
+          password: password,
+        })
+      );
+
+      toast.success("Account created 🎉");
+    } catch (err: unknown) {
+      const msg =
+        err instanceof Error &&
+        (err.message?.includes("Username") || err.message?.includes("unique"))
+          ? "Username already exists"
+          : err instanceof Error
+          ? err.message
+          : "Unknown error";
+      toast.error(msg);
+      throw err;
     }
-
-    const user = { username, password };
-    return fetch(`${apiKey}app-users`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(user),
-    })
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error(`HTTP POST failed with status ${res.status}`);
-        }
-        return res.json();
-      })
-      .then((data) => {
-        setUserID(data.id);
-        localStorage.setItem("user", JSON.stringify({ ...user, id: data.id }));
-        return data;
-      })
-      .catch((error: Error) => {
-        throw new Error(`Posting to 'app-users' failed: ${error.message}`);
-      });
-  };
+  }, []);
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");

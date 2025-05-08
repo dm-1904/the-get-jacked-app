@@ -1,9 +1,15 @@
 import { SetHistory } from "./components/enterWeight";
 import { TMovementContext } from "./context/CreateMovements";
-import { TUserContext } from "./context/CreateUser";
+// import { TUserContext } from "./context/CreateUser";
 import { TWorkoutContex } from "./context/CreateWorkout";
 
-const API = import.meta.env.VITE_API_KEY;
+const API = import.meta.env.VITE_API_URL;
+
+// export type User = { id: string; username: string };
+export interface UserRow {
+  id: string;
+  username: string;
+}
 
 async function request<T>(path: string, options: RequestInit) {
   const res = await fetch(`${API}${path}`, {
@@ -19,7 +25,7 @@ async function request<T>(path: string, options: RequestInit) {
 }
 
 export const createUser = (username: string, password: string) => {
-  request<TUserContext>("/users", {
+  return request<UserRow>("/users", {
     method: "POST",
     body: JSON.stringify({ username, password }),
   });
