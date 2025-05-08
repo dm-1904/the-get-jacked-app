@@ -6,8 +6,10 @@ import {
   useState,
 } from "react";
 import { CreateUser } from "./CreateUser";
+import { createWorkout } from "../api";
 
 // const apiKey = import.meta.env.VITE_API_KEY;
+const id = "";
 
 export type TWorkoutContex = {
   workout: string;
@@ -19,6 +21,7 @@ export type TWorkoutContex = {
   todaysWorkout: string;
   setTodaysWorkout: (todaysWorkout: string) => void;
   postWorkout: (workout: string, day: string) => Promise<void>;
+  id: string;
 };
 
 const CreateWorkout = createContext<TWorkoutContex | undefined>(undefined);
@@ -43,14 +46,27 @@ const CreateWorkoutPro = ({ children }: { children: ReactNode }) => {
     }
   }, [setUserID]);
 
-  const postWorkout = async (workout: string, day: string) => {};
+  const postWorkout = async (workout: string, day: string) => {
+    const storedUser = localStorage.getItem("user");
+    if (!storedUser) throw new Error("No logged‑in user");
+
+    const { id: userID } = JSON.parse(storedUser);
+
+    const data = await createWorkout({ workout, day, userID });
+
+    setWorkoutID(data.id);
+    setTodaysWorkout(workout);
+    setWorkoutSubmitted(true);
+
+    localStorage.setItem("workout", JSON.stringify(data));
+  };
 
   // const postWorkout = async (workout: string, day: string) => {
   //   const storedUser = localStorage.getItem("user");
   //   const { id: linkedID } = storedUser ? JSON.parse(storedUser) : { id: null };
   //   // console.log("post", linkedID);
   //   const newWorkout = { workout, userID: linkedID, day };
-  //   return fetch(`${apiKey}workouts`, {
+  //   return fetch(`${API}/workouts`, {
   //     method: "POST",
   //     headers: {
   //       "Content-Type": "application/json",
@@ -89,6 +105,7 @@ const CreateWorkoutPro = ({ children }: { children: ReactNode }) => {
         setWorkoutSubmitted,
         todaysWorkout,
         setTodaysWorkout,
+        id,
       }}
     >
       {children}

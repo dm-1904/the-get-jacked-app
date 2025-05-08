@@ -6,8 +6,9 @@ import {
   useState,
 } from "react";
 import { CreateWorkout } from "./CreateWorkout";
+import { API } from "../api";
 
-const apiKey = import.meta.env.VITE_API_KEY;
+// const apiKey = import.meta.env.VITE_API_KEY;
 
 export type TMovementContext = {
   movement: string;
@@ -51,7 +52,7 @@ const CreateMovementPro = ({ children }: { children: ReactNode }) => {
     workoutID: string
   ) => {
     const newMovement = { movement, workoutID, sets };
-    return fetch(`${apiKey}movements`, {
+    return fetch(`${API}/movements`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

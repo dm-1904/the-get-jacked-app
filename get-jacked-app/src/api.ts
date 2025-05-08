@@ -3,7 +3,7 @@ import { TMovementContext } from "./context/CreateMovements";
 // import { TUserContext } from "./context/CreateUser";
 import { TWorkoutContex } from "./context/CreateWorkout";
 
-const API = import.meta.env.VITE_API_URL;
+export const API = import.meta.env.VITE_API_URL;
 
 // export type User = { id: string; username: string };
 export interface UserRow {

@@ -2,8 +2,9 @@ import { useCallback, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CreateMovement } from "../context/CreateMovements";
 import { CreateWorkout } from "../context/CreateWorkout";
+import { API } from "../api";
 
-const apiKey = import.meta.env.VITE_API_KEY;
+// const apiKey = import.meta.env.VITE_API_KEY;
 
 export const Dashboard = () => {
   const [workoutList, setWorkoutList] = useState<Workout[]>([]);
@@ -56,7 +57,7 @@ export const Dashboard = () => {
   };
 
   const getWorkouts = () => {
-    return fetch(`${apiKey}workouts`)
+    return fetch(`${API}/workouts`)
       .then((res) => res.json())
       .catch((err: Error) => {
         throw new Error(`HTTP request getWorkouts failed ${err.message}`);
@@ -117,7 +118,7 @@ export const Dashboard = () => {
   };
 
   const getMovements = () => {
-    return fetch(`${apiKey}movements`)
+    return fetch(`${API}/movements`)
       .then((res) => res.json())
       .catch((err: Error) => {
         throw new Error(`HTTP request getMovements failed ${err.message}`);
