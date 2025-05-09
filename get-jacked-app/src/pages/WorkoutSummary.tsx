@@ -1,8 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CreateWorkout } from "../context/CreateWorkout";
+import { API } from "../api";
 
-const apiKey = import.meta.env.VITE_API_KEY;
+// const API = import.meta.env.VITE_API_KEY;
 
 interface Movement {
   id: string;
@@ -11,7 +12,7 @@ interface Movement {
 }
 
 interface SetHistory {
-  movementID: string;
+  movementId: string;
   setNumber: number;
   weight: number;
   date: string;
@@ -40,21 +41,21 @@ export const WorkoutSummary = () => {
       if (todaysWorkout) {
         try {
           const workoutResponse = await fetch(
-            `${apiKey}workouts/${todaysWorkout}`
+            `${API}/workouts/${todaysWorkout}`
           );
           const workoutData = await workoutResponse.json();
           setWorkoutName(workoutData.workout);
 
           const movementsResponse = await fetch(
-            `${apiKey}movements?workoutID=${todaysWorkout}`
+            `${API}/movements?workoutID=${todaysWorkout}`
           );
           const movementsData = await movementsResponse.json();
           setMovements(movementsData);
 
-          const setsResponse = await fetch(`${apiKey}sets`);
+          const setsResponse = await fetch(`${API}/sets`);
           const setsData = await setsResponse.json();
           const filteredSets = setsData.filter((set: SetHistory) =>
-            movementsData.some((m: Movement) => m.id === set.movementID)
+            movementsData.some((m: Movement) => m.id === set.movementId)
           );
           setSetHistory(filteredSets);
         } catch (err: unknown) {
@@ -90,7 +91,7 @@ export const WorkoutSummary = () => {
       <div>
         {movements.map((movement) => {
           const movementSets = setHistory.filter(
-            (set) => set.movementID === movement.id
+            (set) => set.movementId === movement.id
           );
           const setsByDate = groupSetsByDate(movementSets);
           return (

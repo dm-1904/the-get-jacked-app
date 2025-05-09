@@ -15,7 +15,7 @@ interface Movement {
 }
 
 export interface SetHistory {
-  movementID: string;
+  movementId: string;
   setNumber: number;
   weight: number;
   date: string;
@@ -122,7 +122,12 @@ export const EnterWeight = ({
         headers: {
           "content-Type": "application/json",
         },
-        body: JSON.stringify({ movementID, setNumber, weight, date }),
+        body: JSON.stringify({
+          movementID,
+          setNumber,
+          weight,
+          date: new Date(date).toISOString(),
+        }),
       });
       await response.json();
     } catch (error) {
@@ -179,7 +184,7 @@ export const EnterWeight = ({
           const currentSet = activeSets[movement.id] || 0;
           const submittedWeights = submissions[movement.id] || [];
           const movementHistory = lastSetHistory.filter(
-            (set) => set.movementID === movement.id
+            (set) => set.movementId === movement.id
           );
           return (
             <div
