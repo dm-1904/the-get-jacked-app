@@ -1,7 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import { CreateWorkout } from "../context/CreateWorkout";
+import { API } from "../api";
 
-const apiKey = import.meta.env.VITE_API_KEY;
+// const API = import.meta.env.VITE_API_KEY;
 
 interface WeightDetails {
   [key: string]: number | string;
@@ -46,7 +47,7 @@ export const EnterWeight = ({
       if (todaysWorkout) {
         try {
           const response = await fetch(
-            `${apiKey}movements?workoutID=${todaysWorkout}`
+            `${API}/movements?workoutID=${todaysWorkout}`
           );
           const responseData = await response.json();
           setMovements(responseData);
@@ -87,7 +88,7 @@ export const EnterWeight = ({
       const today = todaysDate();
       let lastWorkoutDate: string | undefined;
       try {
-        const response = await fetch(`${apiKey}sets`);
+        const response = await fetch(`${API}/sets`);
         const responseData = await response.json();
         for (let i = responseData.length - 1; i >= 0; i--) {
           if (responseData[i].date < today) {
@@ -116,7 +117,7 @@ export const EnterWeight = ({
     date: string
   ) => {
     try {
-      const response = await fetch(`${apiKey}sets`, {
+      const response = await fetch(`${API}/sets`, {
         method: "POST",
         headers: {
           "content-Type": "application/json",

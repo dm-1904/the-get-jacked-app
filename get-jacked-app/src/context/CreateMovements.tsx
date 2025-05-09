@@ -51,7 +51,7 @@ const CreateMovementPro = ({ children }: { children: ReactNode }) => {
     sets: number,
     workoutID: string
   ) => {
-    const newMovement = { movement, workoutID, sets };
+    const newMovement = { movement, workoutID, setsPlanned: sets };
     return fetch(`${API}/movements`, {
       method: "POST",
       headers: {

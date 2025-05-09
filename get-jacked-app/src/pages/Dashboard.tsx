@@ -14,9 +14,9 @@ export const Dashboard = () => {
 
   interface Movement {
     id: string;
-    workoutID: string;
+    workoutId: string;
     movement: string;
-    sets: number;
+    setsPlanned: number;
   }
 
   const [movementsList, setMovementsList] = useState<Movement[]>([]);
@@ -165,11 +165,11 @@ export const Dashboard = () => {
                     {movementsList
                       .filter(
                         (movement: Movement) =>
-                          movement.workoutID === workout.id
+                          movement.workoutId === workout.id
                       )
                       .map((movement: Movement) => (
                         <p key={movement.id}>
-                          {movement.movement} - {movement.sets} sets
+                          {movement.movement} - {movement.setsPlanned} sets
                         </p>
                       ))}
                     <div className="workout-list-btn-box">

@@ -6,14 +6,21 @@ import { API } from "../../api";
 // const apiKey = import.meta.env.VITE_API_KEY;
 
 interface EnterMovementProps {
-  workoutID: string;
+  workoutId: string;
 }
 
-export const EnterMovement = ({ workoutID }: EnterMovementProps) => {
+type Movement = {
+  id: string;
+  movement: string;
+  setsPlanned: number;
+  workoutId: string;
+};
+
+export const EnterMovement = ({ workoutId }: EnterMovementProps) => {
   const newMovement = useContext(CreateMovement);
   const [inputMovement, setInputMovement] = useState("");
   const [inputSets, setInputSets] = useState<number | string>(0);
-  const [movements, setMovements] = useState([]);
+  const [movements, setMovements] = useState<Movement[]>([]);
   const movementInputRef = useRef<HTMLInputElement>(null);
 
   if (!newMovement) {
@@ -38,7 +45,7 @@ export const EnterMovement = ({ workoutID }: EnterMovementProps) => {
     const formattedMovement = formattedInput(inputMovement);
     setMovement(formattedMovement);
     setSets(Number(inputSets));
-    await postMovementAndSets(formattedMovement, Number(inputSets), workoutID);
+    await postMovementAndSets(formattedMovement, Number(inputSets), workoutId);
     setInputMovement("");
     setInputSets(0);
     fetchMovements();
@@ -52,10 +59,10 @@ export const EnterMovement = ({ workoutID }: EnterMovementProps) => {
   const fetchMovements = useCallback(async () => {
     const movements = await addedMovements();
     const filteredMovements = movements.filter(
-      (movement: { workoutID: string }) => movement.workoutID === workoutID
+      (movement: { workoutId: string }) => movement.workoutId === workoutId
     );
     setMovements(filteredMovements);
-  }, [workoutID]);
+  }, [workoutId]);
 
   useEffect(() => {
     fetchMovements();
@@ -114,12 +121,12 @@ export const EnterMovement = ({ workoutID }: EnterMovementProps) => {
           alt=""
         />
         {movements.map(
-          (movement: { id: number; movement: string; sets: number }) => (
+          (movement: { id: string; movement: string; setsPlanned: number }) => (
             <div
               className="temp-added-movements"
               key={movement.id}
             >
-              {movement.movement} - {movement.sets} sets
+              {movement.movement} - {movement.setsPlanned ?? 0} sets
             </div>
           )
         )}
