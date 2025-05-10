@@ -32,7 +32,7 @@ const CreateUserPro = ({ children }: { children: ReactNode }) => {
         JSON.stringify({
           id: newUser.id,
           username: username,
-          password: password,
+          // password: password,
         })
       );
 
